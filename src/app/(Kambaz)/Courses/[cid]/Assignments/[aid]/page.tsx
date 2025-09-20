@@ -102,7 +102,7 @@ export default function AssignmentEditor() {
         </tr>
         
         <tr>
-            <td colspan="3"><hr /></td>
+            <td colSpan={3}><hr /></td>
         </tr>
         <tr>
             <td></td>
