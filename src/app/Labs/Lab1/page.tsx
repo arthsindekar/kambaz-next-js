@@ -72,7 +72,7 @@ export default function Lab1() {
         <ul id="wd-my-books">
           <li>Dune</li>
           <li>Lord of the Rings</li>
-          <li>Ender's Game</li>
+          <li>Ender&apos;s Game</li>
           <li>Red Mars</li>
           <li>The Forever War</li>
         </ul>
@@ -80,7 +80,7 @@ export default function Lab1() {
         <ul id="wd-your-books">
           <li>Harry Potter: Order of the Phoenix</li>
           <li>Lord of the Rings:The return of the King</li>
-          <li>Harry Potter:Philosopher's Stone</li>
+          <li>Harry Potter:Philosopher&apos;s Stone</li>
         </ul>
       </div>
       <div id="wd-tables">
