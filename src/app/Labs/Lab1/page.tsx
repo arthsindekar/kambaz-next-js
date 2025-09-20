@@ -322,7 +322,7 @@ export default function Lab1() {
       Please{" "}
       <a
         href="https://github.khoury.northeastern.edu/arthsindekar/kambaz-next-js.git"
-        id=" wd-github"
+        id="wd-github"
       >
         click here
       </a>
