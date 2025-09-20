@@ -321,7 +321,7 @@ export default function Lab1() {
       <h4>GitHub link</h4>
       Please{" "}
       <a
-        href="https://github.khoury.northeastern.edu/arthsindekar/kambaz-next-js.git"
+        href="https://github.com/arthsindekar/kambaz-next-js.git"
         id="wd-github"
       >
         click here
