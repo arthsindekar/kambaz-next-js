@@ -11,7 +11,7 @@ export default function Labs() {
           <Link href="https://github.com/arthsindekar/kambaz-next-js">GitHub Source Code Link</Link>
         </li>
         <li>
-          <Link href="https://kambaz-next-js-o1g1.vercel.app/">Click Here for Kambaz App</Link>
+          <Link href="/">Click Here for Kambaz App</Link>
         </li>
       </ul>
       <h1>Labs</h1>
