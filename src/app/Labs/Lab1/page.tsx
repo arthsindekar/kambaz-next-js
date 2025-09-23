@@ -2,6 +2,11 @@
 export default function Lab1() {
   return (
     <div id="wd-lab1">
+      <h1>Arth Sindekar Section 04</h1>
+      <a
+        href="https://github.com/arthsindekar/kambaz-next-js.git"
+        id="wd-github"
+      >GitHub Link</a>
       <h1>Labs</h1>
       <h2>Lab 1</h2>
       <h3>HTML Examples</h3>
