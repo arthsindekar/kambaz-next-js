@@ -30,6 +30,14 @@ export default function CourseNavigation() {
         Grades
       </Link>
       <br />
+      <Link href="/Courses/1234/Exams" id="wd-course-people-link">
+        Exams
+      </Link>
+      <br />
+      <Link href="/Courses/1234/Projects" id="wd-course-people-link">
+        Projects
+      </Link>
+      <br />
       <Link href="/Courses/1234/People/Table" id="wd-course-people-link">
         People
       </Link>
