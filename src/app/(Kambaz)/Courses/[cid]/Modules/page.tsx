@@ -1,122 +1,69 @@
+import { Col, ListGroup, ListGroupItem, Row } from "react-bootstrap";
+import ModulesControls from "./ModulesControls";
+import { BsGripVertical } from "react-icons/bs";
+import LessonControlButtons from "./LessonControlButtons";
+import ModuleControlButtons from "./ModuleControlButtons";
+
 export default function Modules() {
   return (
     <div>
-      <button>Collapse All</button>
-      <button>View Progress</button>
-      <select defaultValue={"Publish All"}>
-        <option value="Publish All">Publish All</option>
-      </select>
-      <button>+ Modules</button>
-      <ul id="wd-modules">
-        <li className="wd-module">
-          <div className="wd-title">Week 1</div>
-          <ul className="wd-lessons">
-            <li className="wd-lesson">
-              <span className="wd-title">LEARNING OBJECTIVES</span>
-              <ul className="wd-content">
-                <li className="wd-content-item">Introduction to the course</li>
-                <li className="wd-content-item">
-                  Learn what is Web Development
-                </li>
-                <li>Learn about HTML and CSS</li>
-              </ul>
-            </li>
-
-            <li>
-              <span className="wd-title">READING</span>
-              <ul className="wd-content">
-                <li className="wd-content-item">FullStack Developer Chapter 1- Introduction</li>
-                <li className="wd-content-item">
-                  FullStack Developer Chapter 2- Creating User
-                </li>
-                <li>Learn about HTML and CSS</li>
-              </ul>
-            </li>
-             <li>
-              <span className="wd-title">SLIDES</span>
-              <ul className="wd-content">
-                <li className="wd-content-item">Intro to Web Dev</li>
-                <li className="wd-content-item">
-                  Creating an http server
-                </li>
-                <li>Creating a react app</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li className="wd-module">
-          <div className="wd-title">Week 2</div>
-          <ul className="wd-lessons">
-            <li className="wd-lesson">
-              <span className="wd-title">LEARNING OBJECTIVES</span>
-              <ul className="wd-content">
-                <li className="wd-content-item">Learning CSS</li>
-                <li className="wd-content-item">
-                  Learn what is JS
-                </li>
-                <li>Learn about HTML and CSS and JS working together</li>
-              </ul>
-            </li>
-
-            <li>
-              <span className="wd-title">READING</span>
-              <ul className="wd-content">
-                <li className="wd-content-item">FullStack Developer Chapter 3- CSS</li>
-                <li className="wd-content-item">
-                  FullStack Developer Chapter 4- Adding styles
-                </li>
-                <li>Learn about JS</li>
-              </ul>
-            </li>
-             <li>
-              <span className="wd-title">SLIDES</span>
-              <ul className="wd-content">
-                <li className="wd-content-item">Intro to CSS</li>
-                <li className="wd-content-item">
-                  Creating an JS function
-                </li>
-                <li>Learning next JS</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li className="wd-module">
-          <div className="wd-title">Week 3</div>
-          <ul className="wd-lessons">
-            <li className="wd-lesson">
-              <span className="wd-title">LEARNING OBJECTIVES</span>
-              <ul className="wd-content">
-                <li className="wd-content-item">Learning NextJS</li>
-                <li className="wd-content-item">
-                  Learn what is NextJS server
-                </li>
-                <li>Learn about server side render</li>
-              </ul>
-            </li>
-
-            <li>
-              <span className="wd-title">READING</span>
-              <ul className="wd-content">
-                <li className="wd-content-item">FullStack Developer Chapter 4- NextJS</li>
-                <li className="wd-content-item">
-                  FullStack Developer Chapter 5- Adding components to nextJS
-                </li>
-                <li>Learn about NextJS</li>
-              </ul>
-            </li>
-             <li>
-              <span className="wd-title">SLIDES</span>
-              <ul className="wd-content">
-                <li className="wd-content-item">Intro to NextJS</li>
-                <li className="wd-content-item">
-                  Creating an NextJS function and exporting it.
-                </li>
-                <li>Learning next NextJS</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
+      <Row className="m-2">
+        <Col xs={12}>
+          <ModulesControls />
+        </Col>
+      </Row>
+      <br /><br />
+      <Row className="m-2">
+      <ListGroup className="rounded-0" id="wd-modules">
+        <ListGroupItem className="wd-module p-0 mb-5 fs-5 border-gray">
+          <div className="wd-title p-3 ps-2 bg-secondary">
+            <BsGripVertical className="me-2 fs-3" /> Week 1{" "}
+            <ModuleControlButtons />
+          </div>
+          <ListGroup className="wd-lessons rounded-0">
+            <ListGroupItem className="wd-lesson p-3 ps-1">
+              <BsGripVertical className="me-2 fs-3" /> LEARNING OBJECTIVES{" "}
+              <LessonControlButtons />
+            </ListGroupItem>
+            <ListGroupItem className="wd-lesson p-3 ps-1">
+              <BsGripVertical className="me-2 fs-3" /> Introduction to the
+              course <LessonControlButtons />
+            </ListGroupItem>
+            <ListGroupItem className="wd-lesson p-3 ps-1">
+              Learn what is Web Development <LessonControlButtons />
+            </ListGroupItem>
+          </ListGroup>
+        </ListGroupItem>
+        <ListGroupItem className="wd-module p-0 mb-5 fs-5 border-gray">
+          <div className="wd-title p-3 ps-2 bg-secondary"> Week 2 </div>
+          <ListGroup className="wd-lessons rounded-0">
+            <ListGroupItem className="wd-lesson p-3 ps-1">
+              LESSON 1 <LessonControlButtons />
+            </ListGroupItem>
+            <ListGroupItem className="wd-lesson p-3 ps-1">
+              LESSON 2 <LessonControlButtons />
+            </ListGroupItem>
+            <ListGroupItem className="wd-lesson p-3 ps-1">
+              LESSON 3 <LessonControlButtons />
+            </ListGroupItem>
+          </ListGroup>
+        </ListGroupItem>
+        <ListGroupItem className="wd-module p-0 mb-5 fs-5 border-gray">
+          <div className="wd-title p-3 ps-2 bg-secondary"> Week 3 </div>
+          <ListGroup className="wd-lessons rounded-0">
+            <ListGroupItem className="wd-lesson p-3 ps-1">
+              LESSON 4 <LessonControlButtons />
+            </ListGroupItem>
+            <ListGroupItem className="wd-lesson p-3 ps-1">
+              LESSON 5 <LessonControlButtons />
+            </ListGroupItem>
+            <ListGroupItem className="wd-lesson p-3 ps-1">
+              LESSON 6 <LessonControlButtons />
+            </ListGroupItem>
+          </ListGroup>
+        </ListGroupItem>
+      </ListGroup>
+      </Row>
     </div>
   );
 }

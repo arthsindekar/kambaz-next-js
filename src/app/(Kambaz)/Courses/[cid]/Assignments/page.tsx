@@ -1,47 +1,124 @@
 import Link from "next/link";
+import {
+  Button,
+  Col,
+  FormControl,
+  InputGroup,
+  ListGroup,
+  ListGroupItem,
+  Row,
+} from "react-bootstrap";
+import InputGroupText from "react-bootstrap/esm/InputGroupText";
+import { BsGripVertical } from "react-icons/bs";
+import { CiSearch } from "react-icons/ci";
+import { FaPlus } from "react-icons/fa6";
+import LessonControlButtons from "../Modules/LessonControlButtons";
+import { MdAssignment } from "react-icons/md";
 
 export default function Assignments() {
   return (
     <div id="wd-assignments">
-      <input placeholder="Search for Assignments" id="wd-search-assignment" />
-      <button id="wd-add-assignment-group">+ Group</button>
-      <button id="wd-add-assignment">+ Assignment</button>
-      <h3 id="wd-assignments-title">
-        ASSIGNMENTS 40% of Total <button>+</button>{" "}
-      </h3>
-      <ul id="wd-assignment-list">
-        <li className="wd-assignment-list-item">
-          <Link
-            href="/Courses/1234/Assignments/123"
-            className="wd-assignment-link"
+      <Row>
+        <Col>
+          <InputGroup
+            style={{ maxWidth: "300px", height: "45px" }}
+            className="mb-3 me-3"
           >
-            A1 - ENV + HTML
-          </Link>{" "} <br />
-          Multiple Modules|<b> Not available until</b> May 6 at 12:00am |<br />
-          <b>Due</b> May 13 at 11:59pm | 100 pts
-        </li>
-        <li className="wd-assignment-list-item">
-          <Link
-            href="/Courses/1234/Assignments/123"
-            className="wd-assignment-link"
+            <InputGroupText className="bg-white">
+              <CiSearch />
+            </InputGroupText>
+            <FormControl className="rounded-end" placeholder={"Search..."} />
+          </InputGroup>
+        </Col>
+        <Col className="d-flex justify-content-end gap-2">
+          <Button
+            variant="secondary"
+            style={{ height: "45px" }}
+            className="d-flex align-items-center px-3"
           >
-            A2 - CSS + Bootstrap
-          </Link>{" "} <br />
-          Multiple Modules|<b> Not available until</b> May 13 at 12:00am |<br />
-          <b>Due</b> May 20 at 11:59pm | 100 pts
-        </li>
-        <li className="wd-assignment-list-item">
-          <Link
-            href="/Courses/1234/Assignments/123"
-            className="wd-assignment-link"
-          >
-            A3 - JAVASCRIPT + REACT
-          </Link>{" "} <br />
-          Multiple Modules|<b> Not available until</b> May 20 at 12:00am |<br />
-          <b>Due</b> May 27 at 11:59pm | 100 pts
-        </li>
+            <FaPlus className="me-2" />
+            Group
+          </Button>
 
-      </ul>
+          <Button
+            variant="danger"
+            style={{ height: "45px"}}
+            className="d-flex align-items-center px-3"
+          >
+            <FaPlus className="me-2" />
+            Assignment
+          </Button>
+        </Col>
+      </Row>
+
+      <br />
+      <br />
+      <br />
+      <br />
+
+      <Row>
+        <ListGroup className="rounded-0" id="wd-assignments">
+          
+          <ListGroupItem className="wd-module p-0 mb-5 fs-5 border-gray">
+            <div className="wd-title p-3 ps-2 bg-secondary d-flex justify-content-between align-items-center">
+              <div>
+                <BsGripVertical className="me-2 fs-3" />
+                ASSIGNMENTS 40% of Total
+              </div> <LessonControlButtons/>
+              
+            </div>
+
+           
+            <ListGroup className="wd-lessons rounded-0">
+              <ListGroupItem className="wd-lesson p-3 ps-1">
+                <BsGripVertical className="me-2 fs-3" />
+                <Link
+                  href="/Courses/1234/Assignments/123"
+                  className="wd-assignment-link text-decoration-none text-dark fw-bold"
+                >
+                <MdAssignment className="me-1 text-success"/>
+                  A1 - ENV + HTML
+                </Link><LessonControlButtons/>
+                <div className="small mt-1 ps-5">
+                  <span className="text-danger">Multiple Modules</span> | <b>Not available until</b> May 6 at 12:00am{" "}
+                  <br />
+                  <b>Due</b> May 13 at 11:59pm | 100 pts
+                </div>
+              </ListGroupItem>
+
+              <ListGroupItem className="wd-lesson p-3 ps-1">
+                <BsGripVertical className="me-2 fs-3" />
+                <Link
+                  href="/Courses/1234/Assignments/123"
+                  className="wd-assignment-link text-decoration-none text-dark fw-bold"
+                >
+                  <MdAssignment className="me-1 text-success"/>A2 - CSS + Bootstrap
+                </Link> <LessonControlButtons/>
+                <div className="small mt-1 ps-5">
+                  <span className="text-danger">Multiple Modules</span> | <b>Not available until</b> May 13 at
+                  12:00am <br />
+                  <b>Due</b> May 20 at 11:59pm | 100 pts
+                </div>
+              </ListGroupItem>
+
+              <ListGroupItem className="wd-lesson p-3 ps-1">
+                <BsGripVertical className="me-2 fs-3" />
+                <Link
+                  href="/Courses/1234/Assignments/123"
+                  className="wd-assignment-link text-decoration-none text-dark fw-bold"
+                >
+                  <MdAssignment className="me-1 text-success"/>A3 - JAVASCRIPT + REACT
+                </Link> <LessonControlButtons/>
+                <div className="small mt-1 ps-5">
+                  <span className="text-danger">Multiple Modules</span> | <b>Not available until</b> May 20 at
+                  12:00am <br />
+                  <b>Due</b> May 27 at 11:59pm | 100 pts
+                </div>
+              </ListGroupItem>
+            </ListGroup>
+          </ListGroupItem>
+        </ListGroup>
+      </Row>
     </div>
   );
 }

@@ -1,40 +1,56 @@
 import Link from "next/link";
+import {
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  FormControl,
+  FormSelect,
+} from "react-bootstrap";
 export default function Profile() {
   return (
     <div id="wd-profile-screen">
       <h3>Profile</h3>
-      <input
+      <FormControl
         defaultValue="alice"
         placeholder="username"
         className="wd-username"
       />
       <br />
-      <input
+      <FormControl
         defaultValue="123"
         placeholder="password"
         type="password"
         className="wd-password"
       />
       <br />
-      <input defaultValue="Alice" placeholder="First Name" id="wd-firstname" />
+      <FormControl
+        defaultValue="Alice"
+        placeholder="First Name"
+        id="wd-firstname"
+      />
       <br />
-      <input
+      <FormControl
         defaultValue="Wonderland"
         placeholder="Last Name"
         id="wd-lastname"
       />
       <br />
-      <input defaultValue="2000-01-01" type="date" id="wd-dob" />
+      <FormControl defaultValue="2000-01-01" type="date" id="wd-dob" />
       <br />
-      <input defaultValue="alice@wonderland" type="email" id="wd-email" />
+      <FormControl defaultValue="alice@wonderland" type="email" id="wd-email" />
       <br />
-      <select defaultValue="FACULTY" id="wd-role">
-        <option value="USER">User</option> <option value="ADMIN">Admin</option>
-        <option value="FACULTY">Faculty</option>{" "}
-        <option value="STUDENT">Student</option>
-      </select>
+      <FormSelect>
+        <option value="User">User</option>
+        <option defaultValue="Faculty" >Faculty</option>
+        <option value="Student">Student</option>
+      </FormSelect>
+
       <br />
-      <Link href="Signin"> Sign out </Link>
+      <Link href="Signin" className="btn btn-danger  mb-2">
+        {" "}
+        Sign out{" "}
+      </Link>
     </div>
   );
 }
