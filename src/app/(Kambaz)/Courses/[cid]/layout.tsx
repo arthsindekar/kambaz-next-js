@@ -29,10 +29,10 @@ export default async function CoursesLayout({
   const { cid } = await params;
   return (
     <div id="wd-courses">
-      <div className="d-xs-block d-md-none bg-dark text-white mb-3 rounded-3">
+      <div className="d-xs-block d-md-none bg-dark text-white mb-3 rounded-3 p-2">
         <Container className="d-flex justify-content-between align-items-center">
-          <Dropdown>
-            <DropdownToggle id="left-dropdown" variant="dark">
+          <Dropdown >
+            <DropdownToggle size="lg"id="left-dropdown" variant="dark">
               <RxHamburgerMenu />
             </DropdownToggle>
 
@@ -71,8 +71,8 @@ export default async function CoursesLayout({
             <div className="fw-bold">CS5610 MON/WED</div>
             <div>Modules</div>
           </div>
-          <Dropdown className="align-end ">
-            <DropdownToggle id="right-dropdown" variant="dark">
+          <Dropdown>
+            <DropdownToggle size="lg" id="right-dropdown" variant="dark">
               <CiMenuKebab />
             </DropdownToggle>
             <DropdownMenu className=" rounded-2">
