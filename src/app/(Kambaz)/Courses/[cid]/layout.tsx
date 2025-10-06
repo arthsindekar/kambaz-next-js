@@ -17,7 +17,7 @@ import { FaBook, FaInbox, FaRegCircleUser } from "react-icons/fa6";
 import { AiOutlineDashboard, AiOutlinePinterest } from "react-icons/ai";
 import { IoMdSettings } from "react-icons/io";
 import { VscFileSubmodule } from "react-icons/vsc";
-import { SiQuizlet, SiZoom } from "react-icons/si";
+import { SiCanvas, SiQuizlet, SiZoom } from "react-icons/si";
 import { MdAssignment } from "react-icons/md";
 import { IoBookmarksOutline } from "react-icons/io5";
 import { RxDropdownMenu, RxHamburgerMenu } from "react-icons/rx";
@@ -37,6 +37,10 @@ export default async function CoursesLayout({
             </DropdownToggle>
 
             <DropdownMenu>
+              <DropdownItem className="text-danger" href="/Dashboard">
+                <SiCanvas  className="fs-1 text-danger m-2" />
+                Kambaz
+              </DropdownItem>
               <DropdownItem className="text-danger" href="/Account">
                 <FaRegCircleUser className="fs-1 text-danger m-2" />
                 Account
