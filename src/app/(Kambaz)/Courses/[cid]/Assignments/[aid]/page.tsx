@@ -71,7 +71,7 @@ export default function AssignmentEditor() {
         <Col xs={12} md={2}>
           <FormSelect id="wd-display-grade-as">
             <option defaultValue="Percentage">Percentage</option>
-            <option value="Points">Percentage</option>
+            <option value="Points">Points</option>
           </FormSelect>
         </Col>
       </Row>
