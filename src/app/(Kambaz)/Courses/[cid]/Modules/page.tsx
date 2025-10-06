@@ -38,13 +38,14 @@ export default function Modules() {
           <div className="wd-title p-3 ps-2 bg-secondary"> Week 2 </div>
           <ListGroup className="wd-lessons rounded-0">
             <ListGroupItem className="wd-lesson p-3 ps-1">
-              LESSON 1 <LessonControlButtons />
+              <BsGripVertical className="me-2 fs-3" />
+              Lesson1 <LessonControlButtons />
             </ListGroupItem>
             <ListGroupItem className="wd-lesson p-3 ps-1">
-              LESSON 2 <LessonControlButtons />
+              <BsGripVertical className="me-2 fs-3" /> Lesson 2 <LessonControlButtons />
             </ListGroupItem>
             <ListGroupItem className="wd-lesson p-3 ps-1">
-              LESSON 3 <LessonControlButtons />
+              <BsGripVertical className="me-2 fs-3" /> Lesson 3 <LessonControlButtons />
             </ListGroupItem>
           </ListGroup>
         </ListGroupItem>
@@ -52,13 +53,13 @@ export default function Modules() {
           <div className="wd-title p-3 ps-2 bg-secondary"> Week 3 </div>
           <ListGroup className="wd-lessons rounded-0">
             <ListGroupItem className="wd-lesson p-3 ps-1">
-              LESSON 4 <LessonControlButtons />
+              <BsGripVertical className="me-2 fs-3" /> Lesson 4 <LessonControlButtons />
             </ListGroupItem>
             <ListGroupItem className="wd-lesson p-3 ps-1">
-              LESSON 5 <LessonControlButtons />
+              <BsGripVertical className="me-2 fs-3" /> lesson 5 <LessonControlButtons />
             </ListGroupItem>
             <ListGroupItem className="wd-lesson p-3 ps-1">
-              LESSON 6 <LessonControlButtons />
+              <BsGripVertical className="me-2 fs-3" /> Lesson 6 <LessonControlButtons />
             </ListGroupItem>
           </ListGroup>
         </ListGroupItem>

@@ -56,15 +56,15 @@ export default function Assignments() {
       <br />
       <br />
 
-      <Row>
+      <Row className="m-2">
         <ListGroup className="rounded-0" id="wd-assignments">
           
           <ListGroupItem className="wd-module p-0 mb-5 fs-5 border-gray">
             <div className="wd-title p-3 ps-2 bg-secondary d-flex justify-content-between align-items-center">
               <div>
                 <BsGripVertical className="me-2 fs-3" />
-                ASSIGNMENTS 40% of Total
-              </div> <LessonControlButtons/>
+                ASSIGNMENTS 
+              </div> <span className="border border-dark rounded-5 p-2">40% of Total</span><LessonControlButtons/>
               
             </div>
 
@@ -108,6 +108,68 @@ export default function Assignments() {
                   className="wd-assignment-link text-decoration-none text-dark fw-bold"
                 >
                   <MdAssignment className="me-1 text-success"/>A3 - JAVASCRIPT + REACT
+                </Link> <LessonControlButtons/>
+                <div className="small mt-1 ps-5">
+                  <span className="text-danger">Multiple Modules</span> | <b>Not available until</b> May 20 at
+                  12:00am <br />
+                  <b>Due</b> May 27 at 11:59pm | 100 pts
+                </div>
+              </ListGroupItem>
+            </ListGroup>
+          </ListGroupItem>
+        </ListGroup>
+      </Row>
+
+      <Row className="m-2">
+        <ListGroup className="rounded-0" id="wd-assignments">
+          
+          <ListGroupItem className="wd-module p-0 mb-5 fs-5 border-gray">
+            <div className="wd-title p-3 ps-2 bg-secondary d-flex justify-content-between align-items-center">
+              <div>
+                <BsGripVertical className="me-2 fs-3" />
+                Quizzes 
+              </div> <span className="border border-dark rounded-5 p-2">10% of Total</span><LessonControlButtons/>
+              
+            </div>
+            <ListGroup className="wd-lessons rounded-0">
+              <ListGroupItem className="wd-lesson p-3 ps-1">
+                <BsGripVertical className="me-2 fs-3" />
+                <Link
+                  href="/Courses/1234/Assignments/123"
+                  className="wd-assignment-link text-decoration-none text-dark fw-bold"
+                >
+                <MdAssignment className="me-1 text-success"/>
+                  Q1 - ENV + HTML
+                </Link><LessonControlButtons/>
+                <div className="small mt-1 ps-5">
+                  <span className="text-danger">Multiple Modules</span> | <b>Not available until</b> May 6 at 12:00am{" "}
+                  <br />
+                  <b>Due</b> May 13 at 11:59pm | 100 pts
+                </div>
+              </ListGroupItem>
+
+              <ListGroupItem className="wd-lesson p-3 ps-1">
+                <BsGripVertical className="me-2 fs-3" />
+                <Link
+                  href="/Courses/1234/Assignments/123"
+                  className="wd-assignment-link text-decoration-none text-dark fw-bold"
+                >
+                  <MdAssignment className="me-1 text-success"/>Q2 - CSS + Bootstrap
+                </Link> <LessonControlButtons/>
+                <div className="small mt-1 ps-5">
+                  <span className="text-danger">Multiple Modules</span> | <b>Not available until</b> May 13 at
+                  12:00am <br />
+                  <b>Due</b> May 20 at 11:59pm | 100 pts
+                </div>
+              </ListGroupItem>
+
+              <ListGroupItem className="wd-lesson p-3 ps-1">
+                <BsGripVertical className="me-2 fs-3" />
+                <Link
+                  href="/Courses/1234/Assignments/123"
+                  className="wd-assignment-link text-decoration-none text-dark fw-bold"
+                >
+                  <MdAssignment className="me-1 text-success"/>Q3 - JAVASCRIPT + REACT
                 </Link> <LessonControlButtons/>
                 <div className="small mt-1 ps-5">
                   <span className="text-danger">Multiple Modules</span> | <b>Not available until</b> May 20 at

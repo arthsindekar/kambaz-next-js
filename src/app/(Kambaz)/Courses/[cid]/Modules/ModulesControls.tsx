@@ -13,15 +13,15 @@ export default function ModulesControls() {
     <div id="wd-modules-controls" className="text-nowrap">
       <Button
         variant="danger"
-        size="lg"
+        size="sm"
         className="m-2 float-end"
         id="wd-add-module-btn"
       >
-        <FaPlus className="position-relative me-2 mb-2" />
+        <FaPlus className="position-relative mb-1" />
         Module
       </Button>
       <Dropdown className="float-end m-2">
-        <DropdownToggle variant="secondary" size="lg" id="wd-publish-all-btn">
+        <DropdownToggle variant="secondary" size="sm" id="wd-publish-all-btn">
           <GreenCheckmark /> Publish All
         </DropdownToggle>
         <DropdownMenu>
@@ -45,7 +45,7 @@ export default function ModulesControls() {
 
       <Button
         variant="secondary"
-        size="lg"
+        size="sm"
         className="m-2 float-end"
         id="wd-view-progress"
       >
@@ -54,7 +54,7 @@ export default function ModulesControls() {
       </Button>
       <Button
         variant="secondary"
-        size="lg"
+        size="sm"
         className="m-2 float-end"
         id="wd-collapse-all"
       >
