@@ -57,7 +57,7 @@ export default function AssignmentEditor() {
           <FormLabel htmlFor="wd-group">Assignment Group</FormLabel>
         </Col>
         <Col xs={12} md={2}>
-          <FormSelect>
+          <FormSelect id="wd-group">
             <option defaultValue="Assignment1">A1</option>
             <option value="Assignment2">A2</option>
             <option value="Assignment3">A3</option>
@@ -69,7 +69,7 @@ export default function AssignmentEditor() {
           <FormLabel htmlFor="wd-display-grade-as">Display Grade As</FormLabel>
         </Col>
         <Col xs={12} md={2}>
-          <FormSelect>
+          <FormSelect id="wd-display-grade-as">
             <option defaultValue="Percentage">Percentage</option>
             <option value="Points">Percentage</option>
           </FormSelect>
@@ -77,10 +77,10 @@ export default function AssignmentEditor() {
       </Row>
       <Row className="mt-3">
         <Col xs={12} md={2} className="me-3">
-          <FormLabel htmlFor="wd-group">Submission Type</FormLabel>
+          <FormLabel htmlFor="wd-submission-type">Submission Type</FormLabel>
         </Col>
         <Col xs={12} sm={6} className="border border-dark rounded p-2 ">
-          <FormSelect>
+          <FormSelect id="wd-submission-type">
             <option defaultValue="Online">Online</option>
             <option value="Offline">Offline</option>
           </FormSelect>

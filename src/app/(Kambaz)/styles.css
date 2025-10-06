@@ -27,7 +27,10 @@ body * {
 .list-group-item {
   --bs-list-group-border-color: gray;
 }
-.wd-lesson {
-  border-left: 3px solid green !important;
+.wd-lesson,
+.wd-assignment-list-item,
+.wd-quiz-list-item,
+.wd-exams-list-item,
+.wd-projects {
+  border-left: 3px solid green;
 }
-

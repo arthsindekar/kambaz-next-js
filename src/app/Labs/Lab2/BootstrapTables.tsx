@@ -29,7 +29,7 @@ export default function BootstrapTables() {
               <td>90</td>
             </tr>
 
-            <tr className="table-primary">
+            <tr className="table-primary border-dark">
               <td>Q3</td>
               <td>JavaScript</td>
               <td>2/17/21</td>
@@ -37,7 +37,7 @@ export default function BootstrapTables() {
             </tr>
           </tbody>
           <tfoot>
-            <tr className="table-success">
+            <tr className="table-success ">
               <td colSpan={3}>Average</td>
               <td>90</td>
             </tr>
