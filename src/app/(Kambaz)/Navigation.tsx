@@ -1,3 +1,4 @@
+"use client";
 import { AiOutlineDashboard } from "react-icons/ai";
 import { IoCalendarOutline } from "react-icons/io5";
 import { LiaBookSolid, LiaCogSolid } from "react-icons/lia";
@@ -6,8 +7,16 @@ import { ListGroup, ListGroupItem } from "react-bootstrap";
 import Link from "next/link";
 import { FaCalendarAlt } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
+import { usePathname } from "next/navigation";
 export default function KambazNavigation() {
-  
+  const pathname = usePathname();
+  const links = [
+    { label: "Dashboard", path: "/Dashboard", icon: AiOutlineDashboard },
+    { label: "Courses", path: "/Dashboard", icon: LiaBookSolid },
+    { label: "Calendar", path: "/Calendar", icon: IoCalendarOutline },
+    { label: "Inbox", path: "/Inbox", icon: FaInbox },
+    { label: "Labs", path: "/Labs", icon: LiaCogSolid },
+  ];
   return (
     <ListGroup
       className="rounded-0 position-fixed bottom-0 top-0 d-none d-md-block bg-black z-2"
@@ -24,70 +33,39 @@ export default function KambazNavigation() {
         <img src="/images/NEU.png" width="75px" alt="Northeastern University" />
       </ListGroupItem>
       <br />
-      <ListGroupItem className="border-0 bg-black text-center">
-        <Link
-          href="/Account"
-          id="wd-account-link"
-          className="text-white text-decoration-none"
+      <ListGroupItem
+        as={Link}
+        href="/Account"
+        className={`text-center border-0 bg-black ${
+          pathname.includes("Account")
+            ? "bg-white text-danger"
+            : "bg-black text-white"
+        }`}
+      >
+        <FaRegCircleUser
+          className={`fs-1 ${
+            pathname.includes("Account") ? "text-danger" : "text-white"
+          }`}
+        />
+        <br />
+        Account
+      </ListGroupItem>
+      {links.map((link,index) => (
+        <ListGroupItem
+          key={index}
+          as={Link}
+          href={link.path}
+          className={`bg-black text-center border-0 ${
+            pathname.includes(link.label)
+              ? "text-danger bg-white"
+              : "text-white bg-black"
+          }`}
         >
-          <FaRegCircleUser className="fs-1 text-white" />
+          {link.icon({ className: "fs-1 text-danger" })}
           <br />
-          Account
-        </Link>
-      </ListGroupItem>
-      <br />
-      <ListGroupItem className="border-0 bg-white text-center">
-        <Link
-          href="/Dashboard"
-          id="wd-dashboard-link"
-          className="text-danger text-decoration-none"
-        >
-          <AiOutlineDashboard className="fs-1 text-danger" />
-          <br />
-          Dashboard
-        </Link>
-      </ListGroupItem>
-      <br />
-      <ListGroupItem className="border-0 text-center bg-black">
-        <Link 
-        href="/Dashboard"
-        id="wd-courses-link"
-        className="text-danger text-decoration-none">
-          <FaBook className="fs-1 text-danger"/>
-          <br />
-          <span className="text-light ">Courses</span>
-        </Link>
-      </ListGroupItem>
-      <ListGroupItem className="border-0 text-center bg-black">
-        <Link 
-        href="/Calendar"
-        id="wd-courses-link"
-        className="text-danger text-decoration-none">
-          <FaCalendarAlt  className="fs-1 text-danger"/>
-          <br />
-          <span className="text-light">Calendar</span>
-        </Link>
-      </ListGroupItem>
-      <ListGroupItem className="border-0 text-center bg-black">
-        <Link 
-        href="/Inbox"
-        id="wd-courses-link"
-        className="text-danger text-decoration-none">
-          <FaInbox  className="fs-1 text-danger"/>
-          <br />
-          <span className="text-light">Inbox</span>
-        </Link>
-      </ListGroupItem>
-      <ListGroupItem className="border-0 text-center bg-black">
-        <Link 
-        href="/Labs"
-        id="wd-courses-link"
-        className="text-danger text-decoration-none">
-          <IoMdSettings className="fs-1 text-danger"/>
-          <br />
-          <span className="text-light">Labs</span>
-        </Link>
-      </ListGroupItem>
+          {link.label}
+        </ListGroupItem>
+      ))}
     </ListGroup>
   );
 }
