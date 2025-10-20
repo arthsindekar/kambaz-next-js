@@ -39,14 +39,22 @@ export default function AssignmentEditor() {
                 />
               </Col>
             </Row>
-
-            <Row className="mt-3 ">
+            <Row className="mt-3">
+              <Col xs={12} md={4} className="fw-bold">
+                <FormLabel htmlFor="wd-description">Description</FormLabel>
+              </Col>
+            </Row>
+            <Row>
               <Col xs={12} md={8}>
                 <FormControl
                   rows={10}
                   className="mb-3 rounded-0 border-dark"
                   as="textarea"
-                  defaultValue={`The assignment is available online
+                  defaultValue={
+                    assignment.description +
+                    `
+                    
+                    The assignment is available online
 
                 Submit a link to the landing page of your Web application running on Netlify.
 
@@ -56,7 +64,8 @@ export default function AssignmentEditor() {
                 > Link to the Kanbas application
                 > Links to all relevant source code repositories
 
-                The Kanbas application should include a link to navigate back to the landing page.`}
+                The Kanbas application should include a link to navigate back to the landing page.`
+                  }
                   id="wd-description"
                 ></FormControl>
               </Col>
@@ -67,7 +76,11 @@ export default function AssignmentEditor() {
                 <FormLabel htmlFor="wd-points">Points</FormLabel>
               </Col>
               <Col xs={12} md={4}>
-                <FormControl type="number" id="wd-points" defaultValue={100} />
+                <FormControl
+                  type="number"
+                  id="wd-points"
+                  defaultValue={assignment.points}
+                />
               </Col>
             </Row>
             <Row className="mt-3">
@@ -76,9 +89,9 @@ export default function AssignmentEditor() {
               </Col>
               <Col xs={12} md={4}>
                 <FormSelect id="wd-group">
-                  <option defaultValue="Assignment1">A1</option>
-                  <option value="Assignment2">A2</option>
-                  <option value="Assignment3">A3</option>
+                  <option defaultValue={assignment.title}>
+                    {assignment.title}
+                  </option>
                 </FormSelect>
               </Col>
             </Row>
@@ -162,7 +175,7 @@ export default function AssignmentEditor() {
                     <FormControl
                       type="date"
                       id="wd-due-date"
-                      defaultValue="2024-05-13"
+                      defaultValue={assignment.dueDate}
                     />
                   </Col>
                 </Row>
@@ -174,7 +187,7 @@ export default function AssignmentEditor() {
                     <br />
                     <FormControl
                       type="date"
-                      defaultValue="2024-05-06"
+                      defaultValue={assignment.availableFrom}
                       id="wd-available-from"
                     />
                   </Col>
@@ -184,7 +197,7 @@ export default function AssignmentEditor() {
                     <br />
                     <FormControl
                       type="date"
-                      defaultValue="2024-05-20"
+                      defaultValue={assignment.availableUntil}
                       id="wd-available-until"
                     />
                   </Col>

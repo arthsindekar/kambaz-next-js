@@ -1,33 +1,242 @@
 [
-  { "_id": "A101", "title": "Propulsion Assignment", "course": "RS101" },
-  { "_id": "A102", "title": "Combustion Analysis", "course": "RS101" },
-  { "_id": "A103", "title": "Nozzle Design Project", "course": "RS101" },
-
-  { "_id": "A201", "title": "Aerodynamics Quiz", "course": "RS102" },
-  { "_id": "A202", "title": "Flow Analysis", "course": "RS102" },
-  { "_id": "A203", "title": "Heating Analysis", "course": "RS102" },
-
-  { "_id": "A301", "title": "Structural Design Task", "course": "RS103" },
-  { "_id": "A302", "title": "Orbital Calculations", "course": "RS103" },
-  { "_id": "A303", "title": "Systems Engineering Exam", "course": "RS103" },
-
-  { "_id": "A401", "title": "Organic Chemistry Reactions Worksheet", "course": "RS104" },
-  { "_id": "A402", "title": "Functional Groups Identification", "course": "RS104" },
-  { "_id": "A403", "title": "Organic Synthesis Report", "course": "RS104" },
-
-  { "_id": "A501", "title": "Inorganic Bonding Assignment", "course": "RS105" },
-  { "_id": "A502", "title": "Transition Metal Complex Analysis", "course": "RS105" },
-  { "_id": "A503", "title": "Inorganic Reaction Mechanisms Quiz", "course": "RS105" },
-
-  { "_id": "A601", "title": "Thermodynamics Problem Set", "course": "RS106" },
-  { "_id": "A602", "title": "Chemical Kinetics Lab Report", "course": "RS106" },
-  { "_id": "A603", "title": "Quantum Chemistry Exam", "course": "RS106" },
-
-  { "_id": "A701", "title": "Elvish Script Translation Task", "course": "RS107" },
-  { "_id": "A702", "title": "Dwarvish Grammar Exercise", "course": "RS107" },
-  { "_id": "A703", "title": "Comparative Linguistics Essay", "course": "RS107" },
-
-  { "_id": "A801", "title": "Middle-earth Diplomacy Report", "course": "RS108" },
-  { "_id": "A802", "title": "War of the Ring Analysis", "course": "RS108" },
-  { "_id": "A803", "title": "Leadership and Cooperation Project", "course": "RS108" }
+  {
+    "_id": "A101",
+    "title": "Propulsion Assignment",
+    "course": "RS101",
+    "description": "Analyze different propulsion systems and their efficiency under varying conditions.",
+    "points": 100,
+    "dueDate": "2025-10-25",
+    "availableFrom": "2025-10-15",
+    "availableUntil": "2025-10-25"
+  },
+  {
+    "_id": "A102",
+    "title": "Combustion Analysis",
+    "course": "RS101",
+    "description": "Perform a detailed combustion reaction analysis with given input parameters.",
+    "points": 80,
+    "dueDate": "2025-10-28",
+    "availableFrom": "2025-10-18",
+    "availableUntil": "2025-10-28"
+  },
+  {
+    "_id": "A103",
+    "title": "Nozzle Design Project",
+    "course": "RS101",
+    "description": "Design an optimized rocket nozzle to achieve maximum thrust efficiency.",
+    "points": 120,
+    "dueDate": "2025-11-02",
+    "availableFrom": "2025-10-20",
+    "availableUntil": "2025-11-02"
+  },
+  {
+    "_id": "A201",
+    "title": "Aerodynamics Quiz",
+    "course": "RS102",
+    "description": "Quiz on aerodynamic principles and flow mechanics.",
+    "points": 50,
+    "dueDate": "2025-10-22",
+    "availableFrom": "2025-10-14",
+    "availableUntil": "2025-10-22"
+  },
+  {
+    "_id": "A202",
+    "title": "Flow Analysis",
+    "course": "RS102",
+    "description": "Simulate laminar and turbulent flows using computational methods.",
+    "points": 100,
+    "dueDate": "2025-10-27",
+    "availableFrom": "2025-10-17",
+    "availableUntil": "2025-10-27"
+  },
+  {
+    "_id": "A203",
+    "title": "Heating Analysis",
+    "course": "RS102",
+    "description": "Analyze the heat transfer mechanisms in aerodynamic surfaces.",
+    "points": 90,
+    "dueDate": "2025-11-01",
+    "availableFrom": "2025-10-19",
+    "availableUntil": "2025-11-01"
+  },
+  {
+    "_id": "A301",
+    "title": "Structural Design Task",
+    "course": "RS103",
+    "description": "Evaluate the structural integrity of a spacecraft design using finite element methods.",
+    "points": 110,
+    "dueDate": "2025-10-24",
+    "availableFrom": "2025-10-13",
+    "availableUntil": "2025-10-24"
+  },
+  {
+    "_id": "A302",
+    "title": "Orbital Calculations",
+    "course": "RS103",
+    "description": "Perform orbital trajectory calculations for low Earth orbit missions.",
+    "points": 95,
+    "dueDate": "2025-10-29",
+    "availableFrom": "2025-10-18",
+    "availableUntil": "2025-10-29"
+  },
+  {
+    "_id": "A303",
+    "title": "Systems Engineering Exam",
+    "course": "RS103",
+    "description": "Midterm exam on systems engineering principles and project management.",
+    "points": 150,
+    "dueDate": "2025-11-03",
+    "availableFrom": "2025-10-20",
+    "availableUntil": "2025-11-03"
+  },
+  {
+    "_id": "A401",
+    "title": "Organic Chemistry Reactions Worksheet",
+    "course": "RS104",
+    "description": "Complete the reaction mechanisms for a set of organic compounds.",
+    "points": 70,
+    "dueDate": "2025-10-23",
+    "availableFrom": "2025-10-12",
+    "availableUntil": "2025-10-23"
+  },
+  {
+    "_id": "A402",
+    "title": "Functional Groups Identification",
+    "course": "RS104",
+    "description": "Identify and classify functional groups within given organic molecules.",
+    "points": 85,
+    "dueDate": "2025-10-27",
+    "availableFrom": "2025-10-16",
+    "availableUntil": "2025-10-27"
+  },
+  {
+    "_id": "A403",
+    "title": "Organic Synthesis Report",
+    "course": "RS104",
+    "description": "Prepare a detailed synthesis pathway for a selected organic compound.",
+    "points": 100,
+    "dueDate": "2025-11-05",
+    "availableFrom": "2025-10-21",
+    "availableUntil": "2025-11-05"
+  },
+  {
+    "_id": "A501",
+    "title": "Inorganic Bonding Assignment",
+    "course": "RS105",
+    "description": "Study the molecular orbital theory and bonding in inorganic complexes.",
+    "points": 90,
+    "dueDate": "2025-10-24",
+    "availableFrom": "2025-10-13",
+    "availableUntil": "2025-10-24"
+  },
+  {
+    "_id": "A502",
+    "title": "Transition Metal Complex Analysis",
+    "course": "RS105",
+    "description": "Analyze crystal field stabilization energy for various metal complexes.",
+    "points": 100,
+    "dueDate": "2025-10-30",
+    "availableFrom": "2025-10-18",
+    "availableUntil": "2025-10-30"
+  },
+  {
+    "_id": "A503",
+    "title": "Inorganic Reaction Mechanisms Quiz",
+    "course": "RS105",
+    "description": "Quiz covering reaction mechanisms in coordination chemistry.",
+    "points": 60,
+    "dueDate": "2025-10-22",
+    "availableFrom": "2025-10-14",
+    "availableUntil": "2025-10-22"
+  },
+  {
+    "_id": "A601",
+    "title": "Thermodynamics Problem Set",
+    "course": "RS106",
+    "description": "Solve advanced thermodynamics problems involving open and closed systems.",
+    "points": 100,
+    "dueDate": "2025-10-25",
+    "availableFrom": "2025-10-15",
+    "availableUntil": "2025-10-25"
+  },
+  {
+    "_id": "A602",
+    "title": "Chemical Kinetics Lab Report",
+    "course": "RS106",
+    "description": "Submit a detailed report on your kinetics lab experiment results.",
+    "points": 120,
+    "dueDate": "2025-10-31",
+    "availableFrom": "2025-10-19",
+    "availableUntil": "2025-10-31"
+  },
+  {
+    "_id": "A603",
+    "title": "Quantum Chemistry Exam",
+    "course": "RS106",
+    "description": "Exam covering Schrödinger’s equation and molecular orbital theory.",
+    "points": 150,
+    "dueDate": "2025-11-04",
+    "availableFrom": "2025-10-22",
+    "availableUntil": "2025-11-04"
+  },
+  {
+    "_id": "A701",
+    "title": "Elvish Script Translation Task",
+    "course": "RS107",
+    "description": "Translate ancient Elvish scripts into modern English using the Tengwar system.",
+    "points": 80,
+    "dueDate": "2025-10-26",
+    "availableFrom": "2025-10-15",
+    "availableUntil": "2025-10-26"
+  },
+  {
+    "_id": "A702",
+    "title": "Dwarvish Grammar Exercise",
+    "course": "RS107",
+    "description": "Complete exercises focused on Dwarvish syntax and morphology.",
+    "points": 70,
+    "dueDate": "2025-10-29",
+    "availableFrom": "2025-10-18",
+    "availableUntil": "2025-10-29"
+  },
+  {
+    "_id": "A703",
+    "title": "Comparative Linguistics Essay",
+    "course": "RS107",
+    "description": "Write an essay comparing linguistic roots of Elvish and Dwarvish dialects.",
+    "points": 100,
+    "dueDate": "2025-11-06",
+    "availableFrom": "2025-10-23",
+    "availableUntil": "2025-11-06"
+  },
+  {
+    "_id": "A801",
+    "title": "Middle-earth Diplomacy Report",
+    "course": "RS108",
+    "description": "Analyze diplomatic relations among Middle-earth kingdoms.",
+    "points": 90,
+    "dueDate": "2025-10-28",
+    "availableFrom": "2025-10-17",
+    "availableUntil": "2025-10-28"
+  },
+  {
+    "_id": "A802",
+    "title": "War of the Ring Analysis",
+    "course": "RS108",
+    "description": "Critical analysis of leadership strategies during the War of the Ring.",
+    "points": 120,
+    "dueDate": "2025-11-03",
+    "availableFrom": "2025-10-21",
+    "availableUntil": "2025-11-03"
+  },
+  {
+    "_id": "A803",
+    "title": "Leadership and Cooperation Project",
+    "course": "RS108",
+    "description": "Group project exploring the themes of leadership and unity in Middle-earth.",
+    "points": 150,
+    "dueDate": "2025-11-08",
+    "availableFrom": "2025-10-25",
+    "availableUntil": "2025-11-08"
+  }
 ]
