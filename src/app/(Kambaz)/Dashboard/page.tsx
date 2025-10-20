@@ -20,7 +20,7 @@ export default function Dashboard() {
                   className="wd-dashboard-course-link text-decoration-none text-dark"
                 >
                   <CardImg
-                    src="/images/reactjs.jpg"
+                    src={course.src}
                     variant="top"
                     width="100%"
                     height={160}
