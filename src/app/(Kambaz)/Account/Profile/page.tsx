@@ -14,33 +14,35 @@ export default function Profile() {
       <FormControl
         defaultValue="alice"
         placeholder="username"
-        className="wd-username"
+        className="wd-username w-25"
       />
       <br />
       <FormControl
         defaultValue="123"
         placeholder="password"
         type="password"
-        className="wd-password"
+        className="wd-password w-25"
       />
       <br />
       <FormControl
         defaultValue="Alice"
         placeholder="First Name"
         id="wd-firstname"
+        className="w-25"
       />
       <br />
       <FormControl
         defaultValue="Wonderland"
         placeholder="Last Name"
         id="wd-lastname"
+        className="w-25"
       />
       <br />
-      <FormControl defaultValue="2000-01-01" type="date" id="wd-dob" />
+      <FormControl className="w-25" defaultValue="2000-01-01" type="date" id="wd-dob" />
       <br />
-      <FormControl defaultValue="alice@wonderland" type="email" id="wd-email" />
+      <FormControl className="w-25" defaultValue="alice@wonderland" type="email" id="wd-email" />
       <br />
-      <FormSelect>
+      <FormSelect className="w-25">
         <option value="User">User</option>
         <option defaultValue="Faculty" >Faculty</option>
         <option value="Student">Student</option>

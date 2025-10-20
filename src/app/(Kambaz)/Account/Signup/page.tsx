@@ -6,7 +6,7 @@ export default function Signup() {
       <h3>Sign up</h3>
       <FormControl
         placeholder="username"
-        className="mb-2"
+        className="mb-2 w-25"
         defaultValue={"alice"}
       />
       <br />
@@ -15,18 +15,18 @@ export default function Signup() {
         placeholder="password"
         defaultValue={"alice"}
         type="password"
-        className="wd-password"
+        className="wd-password w-25"
       />
       <br />
 
       <FormControl
         placeholder="verify password"
         type="password"
-        className="wd-password-verify"
+        className="wd-password-verify w-25"
          defaultValue={"alice"}
       />
       <br />
-      <Link href="Profile" className="btn btn-primary w-100 mb-2">
+      <Link href="Profile" className="btn btn-primary w-25 mb-2">
         {" "}
         Sign up{" "}
       </Link>

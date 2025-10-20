@@ -8,21 +8,21 @@ export default function Signin() {
         defaultValue={"alice"}
         id="wd-username"
         placeholder="username"
-        className="mb-2"
+        className="mb-2 w-25"
       />
       <br />
       <FormControl
         id="wd-password"
         placeholder="password"
         type="password"
-        className="mb-2"
+        className="mb-2 w-25"
         defaultValue={"alice"}
       />
       <br />
       <Link
         id="wd-signin-btn"
         href="/Account/Profile"
-        className="btn btn-primary w-100 mb-2"
+        className="btn btn-primary w-25 mb-2"
       >
         Sign in{" "}
       </Link>
