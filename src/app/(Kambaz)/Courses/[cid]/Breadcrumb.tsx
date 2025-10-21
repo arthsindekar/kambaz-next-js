@@ -4,12 +4,12 @@ import { usePathname } from "next/navigation";
 export default function Breadcrumb({
   course,
 }: {
-  course: { name: string } | undefined;
+  course: { name: string, _id:string } | undefined;
 }) {
   const pathname = usePathname();
   return (
     <span>
-      {course?.name} &gt; {pathname.split("/").pop()}
+      {course?.name}{course?._id} &gt; {pathname.split("/").pop()}
     </span>
   );
 }
