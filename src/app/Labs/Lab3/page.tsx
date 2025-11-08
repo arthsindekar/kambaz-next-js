@@ -1,3 +1,6 @@
+"use client";
+import React from "react";
+import store from "../store";
 import Add from "./Add";
 import AddingAndRemovingToFromArrays from "./AddingAndRemovingToFromArrays";
 import ArrayIndexAndLength from "./ArrayIndexAndLength";
@@ -30,13 +33,20 @@ import VariablesAndConstants from "./VariablesAndConstants";
 import VariableTypes from "./VariableTypes";
 import PathParameters from "./PathParameters";
 import TodoList from "./todos/TodoList";
-
+import { Provider, useSelector } from "react-redux";
+import { RootState } from "../store";
+import { ListGroup, ListGroupItem } from "react-bootstrap";
+import ReduxLab3 from "./ReduxLab3";
 
 export default function Lab3() {
-    console.log("Hello World");
+  
+  console.log("Hello World");
   return (
+    <Provider store={store}>
     <div>
       <h2>Lab 3</h2>
+      <ReduxLab3/>
+      <hr />
       <VariablesAndConstants />
       <VariableTypes />
       <BooleanVariables />
@@ -72,8 +82,9 @@ export default function Lab3() {
         excepturi consectetur. Modi omnis minus sequi maiores, provident
         voluptates.
       </Highlight>
-      <PathParameters/>
-      <TodoList/>
+      <PathParameters />
+      <TodoList />
     </div>
+    </Provider>
   );
 }
