@@ -10,7 +10,7 @@ export default function TodoItem({ todo }: { todo: { id: string; title: string }
       <Row>
         <Col md={4}>{todo.title}</Col>
 
-        <Col md={1} className="ms-2 me-2">
+        <Col md={1} className="ms-2 me-3">
           <Button
             onClick={() => dispatch(setTodo(todo))}
             id="wd-set-todo-click"

@@ -7,9 +7,14 @@ import { ListGroup, ListGroupItem } from "react-bootstrap";
 import Link from "next/link";
 import { FaCalendarAlt } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
-import { usePathname } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
+import { RootState } from "./store";
+import { useSelector } from "react-redux";
 export default function KambazNavigation() {
   const pathname = usePathname();
+  const { currentUser } = useSelector(
+    (state: RootState) => state.accountReducer
+  );
   const links = [
     { label: "Dashboard", path: "/Dashboard", icon: AiOutlineDashboard },
     { label: "Courses", path: "/Dashboard", icon: LiaBookSolid },
@@ -17,6 +22,19 @@ export default function KambazNavigation() {
     { label: "Inbox", path: "/Inbox", icon: FaInbox },
     { label: "Labs", path: "/Labs", icon: LiaCogSolid },
   ];
+  const handleClick = (e: React.MouseEvent<Element, MouseEvent>,link:string) => {
+    e.preventDefault();
+    const isProtected = link.includes("Dashboard") || link.includes("Courses");
+    if (isProtected && currentUser.username !== "") {
+      console.log(currentUser.username);
+      redirect("/Dashboard");
+    }
+    else{
+      console.log("user not signed in");
+      alert("Please sign in to access this page");
+      return;
+    }
+  }
   return (
     <ListGroup
       className="rounded-0 position-fixed bottom-0 top-0 d-none d-md-block bg-black z-2"
@@ -53,8 +71,7 @@ export default function KambazNavigation() {
       {links.map((link,index) => (
         <ListGroupItem
           key={index}
-          as={Link}
-          href={link.path}
+          onClick={(e) => handleClick(e, link.path)}
           className={`bg-black text-center border-0 ${
             pathname.includes(link.label)
               ? "text-danger bg-white"

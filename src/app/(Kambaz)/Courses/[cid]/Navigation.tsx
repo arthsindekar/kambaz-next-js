@@ -1,6 +1,10 @@
 "use client";
-import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
+import { redirect } from "next/navigation";
+import { RootState } from "../../store";
+import { useSelector } from "react-redux";
+import { Button } from "react-bootstrap";
+import Link from "next/link";
 export default function CourseNavigation({ cid }: { cid: string } ) {
   const pathname = usePathname();
   
@@ -15,16 +19,17 @@ export default function CourseNavigation({ cid }: { cid: string } ) {
     { label: "People", path: `/Courses/${cid}/People/Table`, id: "wd-course-people-link" },
   ];
 
+  
   return (
     <div id="wd-courses-navigation" className="wd list-group fs-5 rounded-0">
       {links.map((link) => (
         <Link
           key={link.id}
-          href={link.path}
           id={link.id}
           className={`list-group-item border-0 ${
             pathname.includes(link.label) ? "active" : "text-danger"
           }`}
+          href={link.path}
         >
           {link.label}
         </Link>

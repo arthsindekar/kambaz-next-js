@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import * as db from "../../../Database";
+
 import {
   Button,
   Col,
@@ -17,11 +17,27 @@ import { CiSearch } from "react-icons/ci";
 import { FaPlus } from "react-icons/fa6";
 import LessonControlButtons from "../Modules/LessonControlButtons";
 import { MdAssignment } from "react-icons/md";
-import { useParams } from "next/navigation";
+import { redirect, useParams } from "next/navigation";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
+import { useEffect } from "react";
 
 export default function Assignments() {
   const { cid } = useParams();
-  const assignments = db.assignments;
+  const aid = "NewAssignment"; // Placeholder for new assignment ID generation logic
+  const assignments = useSelector(
+    (state: RootState) => state.assignmentReducer.assignments
+  );
+  const currentUser = useSelector(
+    (state: RootState) => state.accountReducer.currentUser
+  );
+  const isFaculty = currentUser?.role === "FACULTY";
+  useEffect(() => {
+    if (!currentUser || currentUser.username === "") {
+      alert("User not signed in");
+      redirect("/Account/Signin");
+    }
+  }, [currentUser]);
   return (
     <div id="wd-assignments">
       <Row>
@@ -44,27 +60,32 @@ export default function Assignments() {
             />
           </InputGroup>
         </Col>
-        <Col className="d-flex justify-content-end gap-2">
-          <Button
-            id="wd-add-assignment-group"
-            variant="secondary"
-            style={{ height: "45px" }}
-            className="d-flex align-items-center px-3"
-          >
-            <FaPlus className="me-2" />
-            Group
-          </Button>
+        {isFaculty && (
+          <>
+            <Col className="d-flex justify-content-end gap-2">
+              <Button
+                id="wd-add-assignment-group"
+                variant="secondary"
+                style={{ height: "45px" }}
+                className="d-flex align-items-center px-3"
+              >
+                <FaPlus className="me-2" />
+                Group
+              </Button>
 
-          <Button
-            id="wd-add-assignment"
-            variant="danger"
-            style={{ height: "45px" }}
-            className="d-flex align-items-center px-3"
-          >
-            <FaPlus className="me-2" />
-            Assignment
-          </Button>
-        </Col>
+              <Button
+                id="wd-add-assignment"
+                variant="danger"
+                style={{ height: "45px" }}
+                className="d-flex align-items-center px-3"
+                onClick={() => redirect(`/Courses/${cid}/Assignments/${aid}`)}
+              >
+                <FaPlus className="me-2" />
+                Assignment
+              </Button>
+            </Col>
+          </>
+        )}
       </Row>
 
       <br />
@@ -83,7 +104,7 @@ export default function Assignments() {
               <span className="border border-dark rounded-5 p-2">
                 40% of Total
               </span>
-              <LessonControlButtons />
+              <LessonControlButtons aid="0" />
             </div>
 
             <ListGroup className="rounded-0">
@@ -102,11 +123,13 @@ export default function Assignments() {
                       <MdAssignment className="me-1 text-success" />
                       {assignment.title}
                     </Link>
-                    <LessonControlButtons />
+                    <LessonControlButtons aid={assignment._id} />
                     <div className="small mt-1 ps-5">
                       <span className="text-danger">Multiple Modules</span> |{" "}
-                      <b>Not available until</b> {assignment.availableFrom} <br />
-                      <b>Due</b> {assignment.dueDate}| {assignment.points} Points
+                      <b>Not available until</b> {assignment.availableFrom}{" "}
+                      <br />
+                      <b>Due</b> {assignment.dueDate}| {assignment.points}{" "}
+                      Points
                     </div>
                   </ListGroupItem>
                 ))}
@@ -114,8 +137,6 @@ export default function Assignments() {
           </ListGroupItem>
         </ListGroup>
       </Row>
-
-      
     </div>
   );
 }
