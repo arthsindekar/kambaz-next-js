@@ -22,19 +22,27 @@ export default function KambazNavigation() {
     { label: "Inbox", path: "/Inbox", icon: FaInbox },
     { label: "Labs", path: "/Labs", icon: LiaCogSolid },
   ];
-  const handleClick = (e: React.MouseEvent<Element, MouseEvent>,link:string) => {
+  const handleClick = (
+    e: React.MouseEvent<Element, MouseEvent>,
+    link: string
+  ) => {
     e.preventDefault();
-    const isProtected = link.includes("Dashboard") || link.includes("Courses");
+    const isProtected =
+      link.includes("Dashboard") ||
+      link.includes("Courses") ||
+      link.includes("Calendar") ||
+      link.includes("Inbox");
     if (isProtected && currentUser.username !== "") {
       console.log(currentUser.username);
       redirect("/Dashboard");
-    }
-    else{
+    } else if (link.includes("Labs")) {
+      redirect(link);
+    } else {
       console.log("user not signed in");
       alert("Please sign in to access this page");
       return;
     }
-  }
+  };
   return (
     <ListGroup
       className="rounded-0 position-fixed bottom-0 top-0 d-none d-md-block bg-black z-2"
@@ -68,7 +76,7 @@ export default function KambazNavigation() {
         <br />
         Account
       </ListGroupItem>
-      {links.map((link,index) => (
+      {links.map((link, index) => (
         <ListGroupItem
           key={index}
           onClick={(e) => handleClick(e, link.path)}
