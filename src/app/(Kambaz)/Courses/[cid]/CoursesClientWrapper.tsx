@@ -1,7 +1,7 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { RootState } from "../../store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Container,
   Dropdown,
@@ -27,6 +27,7 @@ import { VscFileSubmodule } from "react-icons/vsc";
 import CourseNavigation from "./Navigation";
 import Breadcrumb from "./Breadcrumb";
 import { redirect } from "next/navigation";
+import { toggleKambaz } from "../../Dashboard/reducer";
 
 export default function CoursesClientWrapper({
   children,
@@ -44,7 +45,12 @@ export default function CoursesClientWrapper({
   if (!currentUser || currentUser.username === "") {
     redirect("/Account/Signin");
   }
+  const showKambazNav = useSelector(
+    (state: RootState) => state.dashboardReducer.showKambazNav
+  );
+  const dispatch = useDispatch();
   const course = courses.find((course) => course._id === cid);
+  const[toggleKambazNav,setKambazNav] = useState(showKambazNav);
   const kambazNav = [
     { label: "Kambaz", path: "/Account", icon: SiCanvas },
     { label: "Account", path: "/Account", icon: FaRegCircleUser },
@@ -150,7 +156,10 @@ export default function CoursesClientWrapper({
       </div>
 
       <h2 className="text-danger">
-        <FaAlignJustify className="me-4 fs-4 mb-1" />
+        <FaAlignJustify
+          className="me-4 fs-4 mb-1"
+          onClick={() => dispatch(toggleKambaz(!showKambazNav))}
+        />
         <Breadcrumb course={course} />
       </h2>
 

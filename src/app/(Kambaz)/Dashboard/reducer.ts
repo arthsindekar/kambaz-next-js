@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 const initialState = {
   courses: courses,
   enrollments: enrollments,
+  showKambazNav: true,
 };
 const coursesSlice = createSlice({
   name: "courses",
@@ -42,8 +43,17 @@ const coursesSlice = createSlice({
         (enrollment) => enrollment.course !== courseId
       );
     },
+    toggleKambaz: (state, { payload: toggle }) => {
+      state.showKambazNav = toggle;
+    },
   },
 });
-export const { addCourse, deleteCourse, updateCourse, enrollCourse,unenrollCourse } =
-  coursesSlice.actions;
+export const {
+  addCourse,
+  deleteCourse,
+  updateCourse,
+  enrollCourse,
+  unenrollCourse,
+  toggleKambaz,
+} = coursesSlice.actions;
 export default coursesSlice.reducer;
