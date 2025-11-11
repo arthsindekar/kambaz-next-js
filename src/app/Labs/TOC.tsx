@@ -52,7 +52,7 @@ export default function TOC() {
         </NavLink>
       </NavItem>
       <NavItem>
-        <NavLink href="Account/Profile" as={Link}>
+        <NavLink href="/Account/Profile" as={Link}>
           Kambaz
         </NavLink>
       </NavItem>
