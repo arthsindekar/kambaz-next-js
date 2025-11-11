@@ -15,7 +15,7 @@ export default function KambazNavigation() {
   const { currentUser } = useSelector(
     (state: RootState) => state.accountReducer
   );
-  const showKambazNav = useSelector((state:RootState)=>state.dashboardReducer.showKambazNav)
+  
   const links = [
     { label: "Dashboard", path: "/Dashboard", icon: AiOutlineDashboard },
     { label: "Courses", path: "/Dashboard", icon: LiaBookSolid },
@@ -47,8 +47,7 @@ export default function KambazNavigation() {
 
 
   return (
-  <>
-    {showKambazNav && (
+  
       <ListGroup
         className="rounded-0 position-fixed bottom-0 top-0 d-none d-md-block bg-black z-2"
         style={{ width: 110 }}
@@ -100,9 +99,9 @@ export default function KambazNavigation() {
           </ListGroupItem>
         ))}
       </ListGroup>
-    )}
-  </>
-);
+    );
+
+
 
   // return ( {showKambazNav}
   //   <ListGroup
