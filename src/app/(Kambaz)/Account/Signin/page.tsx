@@ -3,10 +3,10 @@ import { Button, FormControl } from "react-bootstrap";
 import { useState } from "react";
 import { setCurrentUser } from "../reducer";
 import { useDispatch } from "react-redux";
-import * as db from "../../Database";
-
+import * as client from "../client";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+
 export default function Signin() {
   type Credentials = {
     username: string;
@@ -16,21 +16,14 @@ export default function Signin() {
     {} as Credentials
   );
   const dispatch = useDispatch();
-  const signin = () => {
-    const user = db.users.find(
-      (u) =>
-        u.username === credentials.username &&
-        u.password === credentials.password
-    );
-    if (!user) {
-      alert("Invalid username or password");
-      return;
-    }
+
+  const signin = async () => {
+    const user = await client.signin(credentials);
+    if (!user) return;
     dispatch(setCurrentUser(user));
-    console.log(user);
     redirect("/Dashboard");
-    
   };
+
   return (
     <div id="wd-signin-screen">
       <h1>Sign in</h1>

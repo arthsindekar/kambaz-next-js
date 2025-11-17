@@ -27,7 +27,7 @@ import { VscFileSubmodule } from "react-icons/vsc";
 import CourseNavigation from "./Navigation";
 import Breadcrumb from "./Breadcrumb";
 import { redirect } from "next/navigation";
-import { toggleKambaz } from "../../Dashboard/reducer";
+import { toggleCourse } from "../../Dashboard/reducer";
 
 export default function CoursesClientWrapper({
   children,
@@ -45,12 +45,12 @@ export default function CoursesClientWrapper({
   if (!currentUser || currentUser.username === "") {
     redirect("/Account/Signin");
   }
-  const showKambazNav = useSelector(
-    (state: RootState) => state.dashboardReducer.showKambazNav
+  const showCourseNav = useSelector(
+    (state: RootState) => state.dashboardReducer.showCourseNav
   );
   const dispatch = useDispatch();
   const course = courses.find((course) => course._id === cid);
-  const[toggleKambazNav,setKambazNav] = useState(showKambazNav);
+  const [toggleCourseNav, setCourseNav] = useState(showCourseNav);
   const kambazNav = [
     { label: "Kambaz", path: "/Account", icon: SiCanvas },
     { label: "Account", path: "/Account", icon: FaRegCircleUser },
@@ -158,7 +158,7 @@ export default function CoursesClientWrapper({
       <h2 className="text-danger">
         <FaAlignJustify
           className="me-4 fs-4 mb-1"
-          onClick={() => dispatch(toggleKambaz(!showKambazNav))}
+          onClick={() => dispatch(toggleCourse(!showCourseNav))}
         />
         <Breadcrumb course={course} />
       </h2>

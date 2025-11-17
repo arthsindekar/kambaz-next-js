@@ -12,7 +12,7 @@ export default function AccountNavigation() {
   const pathname = usePathname();
   return (
     <div id="wd-account-navigation" className="wd list-group fs-5 rounded-0">
-      {currentUser.username === "" && (
+      {!currentUser && (
         <>
           <Link
             href="Signin"
@@ -34,7 +34,7 @@ export default function AccountNavigation() {
           </Link>{" "}
         </>
       )}
-      {currentUser.username !== "" && (
+      {currentUser && (
         <>
           <Link
             className={` list-group-item border-0 text-danger text-decoration-none ${

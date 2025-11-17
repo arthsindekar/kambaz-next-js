@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { redirect } from "next/navigation";
 import { setCurrentUser } from "../reducer";
+import * as client from "../client";
 export default function Profile() {
   const { currentUser } = useSelector(
     (state: RootState) => state.accountReducer
@@ -30,12 +31,12 @@ export default function Profile() {
   });
 
   const dispatch = useDispatch();
-  const signout = () => {
-    dispatch(setCurrentUser({
-      username:""
-    }))
-    redirect("Signin");
+  const signout = async () => {
+    await client.signout();
+    dispatch(setCurrentUser(null));
+    redirect("/Account/Signin");
   };
+
   const fetchProfile = () => {
     if (currentUser.username === "") return redirect("Signin");
     setProfile(currentUser);
@@ -43,6 +44,11 @@ export default function Profile() {
   useEffect(() => {
     fetchProfile();
   }, []);
+  const updateProfile = async () => {
+    const updatedProfile = await client.updateUser(profile);
+    dispatch(setCurrentUser(updatedProfile));
+  };
+
   return (
     <div id="wd-profile-screen">
       <h3>Profile</h3>
@@ -113,6 +119,14 @@ export default function Profile() {
             <option value="STUDENT">Student</option>
           </FormSelect>
 
+          <br />
+          <Button
+            onClick={updateProfile}
+            className="btn btn-primary w-25 mb-2"
+          >
+            {" "}
+            Update{" "}
+          </Button>
           <br />
           <Button onClick={signout} className="btn btn-danger  mb-2">
             {" "}

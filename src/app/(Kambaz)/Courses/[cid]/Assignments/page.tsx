@@ -18,25 +18,35 @@ import { FaPlus } from "react-icons/fa6";
 import LessonControlButtons from "../Modules/LessonControlButtons";
 import { MdAssignment } from "react-icons/md";
 import { redirect, useParams } from "next/navigation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import { useEffect } from "react";
-
+import * as client from "../../client";
+import { setAssignments } from "./assignmentReducer";
 export default function Assignments() {
   const { cid } = useParams();
   const aid = "NewAssignment"; // Placeholder for new assignment ID generation logic
   const assignments = useSelector(
     (state: RootState) => state.assignmentReducer.assignments
   );
+  const dispatch = useDispatch();
   const currentUser = useSelector(
     (state: RootState) => state.accountReducer.currentUser
   );
   const isFaculty = currentUser?.role === "FACULTY";
+  const fetchAssignments = async () => {
+    const fetchedAssignments = await client.findAssignmentsForCourse(
+      cid as string
+    );
+    dispatch(setAssignments(fetchedAssignments));
+  };
+  
   useEffect(() => {
     if (!currentUser || currentUser.username === "") {
       alert("User not signed in");
       redirect("/Account/Signin");
     }
+    fetchAssignments();
   }, [currentUser]);
   return (
     <div id="wd-assignments">
@@ -108,31 +118,27 @@ export default function Assignments() {
             </div>
 
             <ListGroup className="rounded-0">
-              {assignments
-                .filter((assignment) => assignment.course === cid)
-                .map((assignment) => (
-                  <ListGroupItem
-                    key={assignment._id}
-                    className="wd-assignment-list-item p-3 ps-1"
+              {assignments.map((assignment) => (
+                <ListGroupItem
+                  key={assignment._id}
+                  className="wd-assignment-list-item p-3 ps-1"
+                >
+                  <BsGripVertical className="me-2 fs-3" />
+                  <Link
+                    href={`/Courses/${cid}/Assignments/${assignment._id}`}
+                    className="wd-assignment-link text-decoration-none text-dark fw-bold"
                   >
-                    <BsGripVertical className="me-2 fs-3" />
-                    <Link
-                      href={`/Courses/${cid}/Assignments/${assignment._id}`}
-                      className="wd-assignment-link text-decoration-none text-dark fw-bold"
-                    >
-                      <MdAssignment className="me-1 text-success" />
-                      {assignment.title}
-                    </Link>
-                    <LessonControlButtons aid={assignment._id} />
-                    <div className="small mt-1 ps-5">
-                      <span className="text-danger">Multiple Modules</span> |{" "}
-                      <b>Not available until</b> {assignment.availableFrom}{" "}
-                      <br />
-                      <b>Due</b> {assignment.dueDate}| {assignment.points}{" "}
-                      Points
-                    </div>
-                  </ListGroupItem>
-                ))}
+                    <MdAssignment className="me-1 text-success" />
+                    {assignment.title}
+                  </Link>
+                  <LessonControlButtons aid={assignment._id} />
+                  <div className="small mt-1 ps-5">
+                    <span className="text-danger">Multiple Modules</span> |{" "}
+                    <b>Not available until</b> {assignment.availableFrom} <br />
+                    <b>Due</b> {assignment.dueDate}| {assignment.points} Points
+                  </div>
+                </ListGroupItem>
+              ))}
             </ListGroup>
           </ListGroupItem>
         </ListGroup>

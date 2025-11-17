@@ -1,10 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { courses, enrollments } from "../Database";
+
 import { v4 as uuidv4 } from "uuid";
+export type Enrollment = {
+  _id: string;
+  user: string;
+  course: string;
+};
+export type Courses = {
+  _id: string;
+  name: string;
+  number: string;
+  startDate: string;
+  endDate: string;
+  department: string;
+  description: string;
+  credits: number;
+  src: string;
+};
+
 const initialState = {
-  courses: courses,
-  enrollments: enrollments,
-  showKambazNav: true,
+  courses: [] as Courses[],
+  enrollments: [] as Enrollment[],
+  showCourseNav: true,
 };
 const coursesSlice = createSlice({
   name: "courses",
@@ -35,16 +52,20 @@ const coursesSlice = createSlice({
     },
     enrollCourse: (state, { payload: enrollment }) => {
       state.enrollments = [...state.enrollments, enrollment];
-      console.log("New Enrollment" + JSON.stringify(enrollment));
-      console.log("Enrollments updated:", JSON.stringify(enrollments));
     },
     unenrollCourse: (state, { payload: courseId }) => {
       state.enrollments = state.enrollments.filter(
         (enrollment) => enrollment.course !== courseId
       );
     },
-    toggleKambaz: (state, { payload: toggle }) => {
-      state.showKambazNav = toggle;
+    toggleCourse: (state, { payload: toggle }) => {
+      state.showCourseNav = toggle;
+    },
+    setCourses: (state, { payload: courses }) => {
+      state.courses = courses;
+    },
+    setEnrollments: (state, { payload: enrollments }) => {
+      state.enrollments = enrollments;
     },
   },
 });
@@ -54,6 +75,8 @@ export const {
   updateCourse,
   enrollCourse,
   unenrollCourse,
-  toggleKambaz,
+  toggleCourse,
+  setCourses,
+  setEnrollments
 } = coursesSlice.actions;
 export default coursesSlice.reducer;

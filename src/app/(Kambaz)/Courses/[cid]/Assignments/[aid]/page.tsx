@@ -1,13 +1,9 @@
 "use client";
 import { redirect, useParams } from "next/navigation";
-
+import * as client from "../../../client";
 import {
   Button,
   Col,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
   FormCheck,
   FormControl,
   FormLabel,
@@ -16,9 +12,10 @@ import {
 } from "react-bootstrap";
 import { RootState } from "@/src/app/(Kambaz)/store";
 import { useDispatch, useSelector } from "react-redux";
-import { use, useEffect, useMemo, useState } from "react";
-import { addAssignment, updateAssignment } from "../assignmentReducer";
-import router from "next/router";
+import { useEffect, useMemo, useState } from "react";
+import { setAssignments, updateAssignment } from "../assignmentReducer";
+import { assignments } from "@/src/app/(Kambaz)/Database";
+import { on } from "events";
 
 export default function AssignmentEditor() {
   const { cid, aid } = useParams();
@@ -52,6 +49,25 @@ export default function AssignmentEditor() {
     (state: RootState) => state.accountReducer.currentUser
   );
   const isFaculty = currentUser?.role === "FACULTY";
+
+  const onCreateAssignment = async () => {
+    const createdAssignment = await client.createAssignment(newAssignment);
+    dispatch(setAssignments([...assignments, createdAssignment]));
+  };
+
+  const onUpdateAssignment = async () => {
+    const updatedAssignment = await client.updateAssignment(newAssignment);
+    dispatch(
+      setAssignments([
+        ...assignments.map((a) =>
+          a._id === updatedAssignment._id ? updatedAssignment : a
+        ),
+      ])
+    );
+  };
+
+ 
+
   return (
     <div id="wd-assignments-editor" className="m-3">
       <div>
@@ -281,9 +297,8 @@ export default function AssignmentEditor() {
               </Button>
               <Button
                 onClick={() => {
-                  if (isNew) dispatch(addAssignment(newAssignment));
-                  else
-                    dispatch(updateAssignment({ ...newAssignment, _id: aid }));
+                  if (isNew) onCreateAssignment();
+                  else onUpdateAssignment();
                   redirect(`/Courses/${cid}/Assignments`);
                 }}
                 className="m-2 bg-danger text-light border-0"

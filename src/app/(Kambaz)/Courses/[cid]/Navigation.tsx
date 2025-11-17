@@ -7,8 +7,8 @@ import { Button } from "react-bootstrap";
 import Link from "next/link";
 export default function CourseNavigation({ cid }: { cid: string }) {
   const pathname = usePathname();
-  const showKambazNav = useSelector(
-    (state: RootState) => state.dashboardReducer.showKambazNav
+  const showCourseNav = useSelector(
+    (state: RootState) => state.dashboardReducer.showCourseNav
   );
   const links = [
     { label: "Home", path: `/Courses/${cid}/Home`, id: "wd-course-home-link" },
@@ -47,7 +47,7 @@ export default function CourseNavigation({ cid }: { cid: string }) {
 
   return (
     <div id="wd-courses-navigation" className="wd list-group fs-5 rounded-0">
-      {showKambazNav && links.map((link) => (
+      {showCourseNav && links.map((link) => (
         <Link
           key={link.id}
           id={link.id}
