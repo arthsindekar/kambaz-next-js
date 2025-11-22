@@ -18,17 +18,12 @@ export default function Signin() {
   const dispatch = useDispatch();
 
   const signin = async () => {
-    try {
-      const user = await client.signin(credentials);
-      if (!user) {
-        return;
-      }
-      dispatch(setCurrentUser(user));
-      redirect("/Dashboard");
-    } catch (err) {
-      console.error(err);
+    const user = await client.signin(credentials);
+    if (!user) {
       redirect("/");
     }
+    dispatch(setCurrentUser(user));
+    redirect("/Dashboard");
   };
 
   return (
