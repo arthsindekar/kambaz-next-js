@@ -19,7 +19,7 @@ export default function Signin() {
 
   const signin = async () => {
     const user = await client.signin(credentials);
-    if (!user) return;
+    if (!user) redirect("/");
     dispatch(setCurrentUser(user));
     redirect("/Dashboard");
   };
