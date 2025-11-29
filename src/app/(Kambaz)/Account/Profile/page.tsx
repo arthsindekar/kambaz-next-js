@@ -28,6 +28,10 @@ export default function Profile() {
     email: "",
     role: "",
     dob: "",
+    loginId: "002143650S",
+    section: "S101",
+    lastActivity: "1852-11-27",
+    totalActivity: "21:32:43",
   });
 
   const dispatch = useDispatch();
@@ -120,10 +124,7 @@ export default function Profile() {
           </FormSelect>
 
           <br />
-          <Button
-            onClick={updateProfile}
-            className="btn btn-primary w-25 mb-2"
-          >
+          <Button onClick={updateProfile} className="btn btn-primary w-25 mb-2">
             {" "}
             Update{" "}
           </Button>

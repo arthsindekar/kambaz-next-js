@@ -8,7 +8,11 @@ const initialState = {
     lastName: "",
     email: "",
     role: "",
-    dob:"",
+    dob: "",
+    loginId: "002143650S",
+    section: "S101",
+    lastActivity: "1852-11-27",
+    totalActivity: "21:32:43",
   },
 };
 const accountSlice = createSlice({
