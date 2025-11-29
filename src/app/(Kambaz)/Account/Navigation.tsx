@@ -4,11 +4,12 @@ import { usePathname } from "next/navigation";
 import path from "path";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
+import { NavLink } from "react-bootstrap";
 export default function AccountNavigation() {
   const { currentUser } = useSelector(
     (state: RootState) => state.accountReducer
   );
-  
+
   const pathname = usePathname();
   return (
     <div id="wd-account-navigation" className="wd list-group fs-5 rounded-0">
@@ -45,6 +46,18 @@ export default function AccountNavigation() {
             {" "}
             Profile{" "}
           </Link>{" "}
+          {currentUser && currentUser.role === "ADMIN" && (
+            <NavLink
+              as={Link}
+              href={`/Account/Users`}
+              className={` list-group-item border-0 text-danger text-decoration-none ${
+              pathname.includes("Users") ? "active text-dark" : ""
+            }`}
+            >
+              {" "}
+              Users{" "}
+            </NavLink>
+          )}
         </>
       )}
     </div>
