@@ -33,9 +33,7 @@ export default function Dashboard() {
   const isFaculty = currentUser?.role === "FACULTY";
 
   const dispatch = useDispatch();
-  const { courses } = useSelector(
-    (state: RootState) => state.dashboardReducer
-  );
+  const { courses } = useSelector((state: RootState) => state.dashboardReducer);
   const [course, setCourse] = useState({
     _id: "",
     name: "",
@@ -49,6 +47,7 @@ export default function Dashboard() {
   });
   const [enrollToggle, setEnrollToggle] = useState(false);
   const [allCourses, setAllCourses] = useState<Courses[]>([]);
+  const [myCoursesToggle, setMyCoursesToggle] = useState(false);
 
   const handleEnroll = async (courseId: string) => {
     console.log("enrolling....");
@@ -103,13 +102,6 @@ export default function Dashboard() {
     //update courses with user courses
     const userCourses = await client.findMyCourses();
     dispatch(setCourses(userCourses));
-    // const allEnrollments = await client.findAllEnrollments();
-    // const userEnrollments = allEnrollments.filter(
-    //   (e: Enrollment) => e.user === currentUser._id
-    // );
-     
-
-    // dispatch(setEnrollments(userEnrollments));
   };
   const onDeleteCourse = async (courseId: string) => {
     console.log("deleting course...");
@@ -149,13 +141,44 @@ export default function Dashboard() {
   return (
     <div id="wd-dashboard">
       <h1 id="wd-dashboard-title">Dashboard </h1> <hr />
-      <h3>
+      <h3 className="d-flex justify-content-between">
         <Form.Check
           type="switch"
           label={enrollToggle ? "All Courses" : "Enrolled Courses"}
           checked={enrollToggle}
-          onChange={() => setEnrollToggle(!enrollToggle)}
+          onChange={() => {
+            setEnrollToggle(!enrollToggle);
+            setMyCoursesToggle(false);
+          }}
         />
+        <div>
+          <Button
+            className="me-3"
+            onClick={() => {
+              setEnrollToggle(!enrollToggle);
+              setMyCoursesToggle(false);
+            }}
+          >
+            Enrollments
+          </Button>
+          <Button
+            className="me-3"
+            onClick={() => {
+              setEnrollToggle(true);
+              setMyCoursesToggle(false);
+            }}
+          >
+            All Courses
+          </Button>
+          <Button
+            onClick={() => {
+              setEnrollToggle(false);
+              setMyCoursesToggle(true);
+            }}
+          >
+            My Courses
+          </Button>
+        </div>
       </h3>
       {isFaculty && (
         <>
@@ -263,7 +286,7 @@ export default function Dashboard() {
                       )}
                     </CardBody>
                   </Link>
-                  {isEnrolled ? (
+                  {!myCoursesToggle && isEnrolled && (
                     <Button
                       className="btn btn-danger"
                       style={{ width: "80px" }}
@@ -271,7 +294,8 @@ export default function Dashboard() {
                     >
                       Uneroll
                     </Button>
-                  ) : (
+                  )}
+                  {!myCoursesToggle && !isEnrolled && (
                     <Button
                       className="btn btn-success"
                       style={{ width: "80px" }}
