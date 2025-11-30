@@ -304,9 +304,9 @@ export default function AssignmentEditor() {
                 Cancel
               </Button>
               <Button
-                onClick={() => {
+                onClick={async () => {
                   if (isNew) onCreateAssignment();
-                  else onUpdateAssignment();
+                  else await onUpdateAssignment();
                   redirect(`/Courses/${cid}/Assignments`);
                 }}
                 className="m-2 bg-danger text-light border-0"
