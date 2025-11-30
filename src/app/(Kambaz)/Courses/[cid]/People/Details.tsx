@@ -81,9 +81,9 @@ export default function PeopleDetails({
             className="w-50 wd-edit-name"
             defaultValue={`${user.firstName} ${user.lastName}`}
             onChange={(e) => setName(e.target.value)}
-            onKeyDown={(e) => {
+            onKeyDown={async (e) => {
               if (e.key === "Enter") {
-                saveUser();
+                await saveUser();
               }
             }}
           />
