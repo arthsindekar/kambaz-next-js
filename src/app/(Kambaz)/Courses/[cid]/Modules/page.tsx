@@ -52,12 +52,12 @@ export default function Modules() {
     dispatch(setModules([...modules, createdModule]));
   };
   const onRemoveModule = async (moduleId: string) => {
-    await client.deleteModule(moduleId);
+    await client.deleteModule(cid, moduleId);
     dispatch(setModules(modules.filter((m) => m._id !== moduleId)));
   };
   const onUpdateModule = async (module: Module) => {
-    await client.updateModule(module);
-    const newModules = modules.map((m) => m._id === module._id ? module : m );
+    await client.updateModule(cid,module);
+    const newModules = modules.map((m) => (m._id === module._id ? module : m));
     dispatch(setModules(newModules));
   };
 
@@ -94,7 +94,7 @@ export default function Modules() {
                     }
                     onKeyDown={(e) => {
                       if (e.key === "Enter") {
-                         onUpdateModule({ ...module, editing: false });
+                        onUpdateModule({ ...module, editing: false });
                       }
                     }}
                     defaultValue={module.name}

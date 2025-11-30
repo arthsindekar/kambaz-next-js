@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 export type Enrollment = {
   _id: string;
   user: string;
-  course: string;
+  course: string | Courses;
 };
 export type Courses = {
   _id: string;
@@ -77,6 +77,6 @@ export const {
   unenrollCourse,
   toggleCourse,
   setCourses,
-  setEnrollments
+  setEnrollments,
 } = coursesSlice.actions;
 export default coursesSlice.reducer;

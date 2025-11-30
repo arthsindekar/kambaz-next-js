@@ -17,7 +17,7 @@ import { RootState } from "../store";
 import { setCourses, setEnrollments, Enrollment, Courses } from "./reducer";
 import { useEffect, useState } from "react";
 import { redirect } from "next/navigation";
-import { v4 as uuidv4 } from "uuid";
+
 import Link from "next/link";
 import * as client from "../Courses/client";
 
@@ -33,7 +33,7 @@ export default function Dashboard() {
   const isFaculty = currentUser?.role === "FACULTY";
 
   const dispatch = useDispatch();
-  const { courses, enrollments } = useSelector(
+  const { courses } = useSelector(
     (state: RootState) => state.dashboardReducer
   );
   const [course, setCourse] = useState({
@@ -52,7 +52,7 @@ export default function Dashboard() {
 
   const handleEnroll = async (courseId: string) => {
     console.log("enrolling....");
-    await client.enrollCourse(courseId);
+    await client.enrollIntoCourse(currentUser._id, courseId);
     const newEnrollments = await client.findUserEnrollments();
     dispatch(setEnrollments(newEnrollments));
 
@@ -67,7 +67,7 @@ export default function Dashboard() {
 
   const handleUnenroll = async (courseId: string) => {
     console.log("unenrolling...");
-    await client.unenrollCourse(courseId);
+    await client.unenrollFromCourse(currentUser._id, courseId);
 
     const newEnrollments = await client.findUserEnrollments();
     dispatch(setEnrollments(newEnrollments));
@@ -94,15 +94,22 @@ export default function Dashboard() {
 
   const displayedCourses = enrollToggle ? allCourses : courses;
   const onAddNewCourse = async () => {
-    const newCourse = await client.createCourse(course);
-    dispatch(setCourses([...courses, newCourse]));
-    const allEnrollments = await client.findAllEnrollments();
-    const userEnrollments = allEnrollments.filter(
-      (e: Enrollment) => e.user === currentUser._id
-    );
-    setAllCourses([...allCourses, newCourse]);
+    //create a new course
+    await client.createCourse(course);
+    //update allcourses with new course
+    const allCourses = await client.fetchAllCourses();
+    setAllCourses(allCourses);
 
-    dispatch(setEnrollments(userEnrollments));
+    //update courses with user courses
+    const userCourses = await client.findMyCourses();
+    dispatch(setCourses(userCourses));
+    // const allEnrollments = await client.findAllEnrollments();
+    // const userEnrollments = allEnrollments.filter(
+    //   (e: Enrollment) => e.user === currentUser._id
+    // );
+     
+
+    // dispatch(setEnrollments(userEnrollments));
   };
   const onDeleteCourse = async (courseId: string) => {
     console.log("deleting course...");
@@ -196,10 +203,7 @@ export default function Dashboard() {
       <div id="wd-dashboard-courses">
         <Row xs={1} md={5} className="g-4">
           {displayedCourses.map((course) => {
-            const isEnrolled = enrollments.some(
-              (e) => e.course === course._id && e.user === currentUser._id
-            );
-
+            const isEnrolled = courses.some((c) => c._id === course._id);
             return (
               <Col
                 key={course._id}
@@ -215,7 +219,7 @@ export default function Dashboard() {
                     }}
                   >
                     <CardImg
-                      src={course.src || "/course-default.png"}
+                      src={course.src || "images/reactjs.jpg"}
                       variant="top"
                       width="100%"
                       height={160}

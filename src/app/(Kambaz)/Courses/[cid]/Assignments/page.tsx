@@ -134,8 +134,8 @@ export default function Assignments() {
                   <LessonControlButtons aid={assignment._id} />
                   <div className="small mt-1 ps-5">
                     <span className="text-danger">Multiple Modules</span> |{" "}
-                    <b>Not available until</b> {assignment.availableFrom} <br />
-                    <b>Due</b> {assignment.dueDate}| {assignment.points} Points
+                    <b>Not available until</b> {assignment.availableFrom.slice(0,10)} <br />
+                    <b>Due</b> {assignment.dueDate.slice(0, 10)}| {assignment.points} Points
                   </div>
                 </ListGroupItem>
               ))}

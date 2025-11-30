@@ -1,13 +1,15 @@
 "use client";
 
 import { Users } from "@/src/app/(Kambaz)/Account/client";
-import { useParams } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import PeopleDetails from "../Details";
-import Link from "next/link";
-
+import * as client from "../../../client";
 import { Table } from "react-bootstrap";
 import { FaUserCircle } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { RootState } from "@/src/app/(Kambaz)/store";
+import { useSelector } from "react-redux";
+
 export default function PeopleTable({
   users = [],
   fetchUsers,
@@ -15,9 +17,29 @@ export default function PeopleTable({
   users?: Users[];
   fetchUsers: () => void;
 }) {
+  console.log(JSON.stringify(users));
+  
+  const [localUsers, setUsers] = useState<Users[]>([]);
   const [showDetails, setShowDetails] = useState(false);
   const [showUserId, setShowUserId] = useState<string | null>(null);
+  const pathname = usePathname();
+  const { cid } = useParams();
+  const isCoursePeoplePage =
+    pathname.includes("Courses") && pathname.includes("People");
 
+  useEffect(() => {
+    async function loadCourseUsers() {
+      if (isCoursePeoplePage && cid) {
+        const courseUsers = await client.findUsersForCourse(cid as string);
+        setUsers(courseUsers);
+      } else {
+        setUsers(users);
+      }
+    }
+    loadCourseUsers();
+  }, [cid, cid ? null : users]);
+
+  
   return (
     <div id="wd-people-table">
       {showDetails && (
@@ -25,7 +47,7 @@ export default function PeopleTable({
           uid={showUserId}
           onClose={() => {
             setShowDetails(false);
-            fetchUsers();
+            if (!isCoursePeoplePage) fetchUsers();
           }}
         />
       )}
@@ -41,7 +63,7 @@ export default function PeopleTable({
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
+          {localUsers.map((user) => (
             <tr key={user._id}>
               <td className="wd-full-name text-nowrap">
                 <span
