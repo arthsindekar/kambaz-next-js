@@ -99,7 +99,7 @@ export default function Profile() {
           <br />
           <FormControl
             className="w-25"
-            defaultValue={profile.dob}
+            defaultValue={profile.dob?profile.dob.slice(0,10):""}
             type="date"
             id="wd-dob"
             onChange={(e) => setProfile({ ...profile, dob: e.target.value })}
