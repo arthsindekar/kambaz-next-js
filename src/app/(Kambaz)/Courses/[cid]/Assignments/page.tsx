@@ -34,14 +34,14 @@ export default function Assignments() {
     (state: RootState) => state.accountReducer.currentUser
   );
   const isFaculty = currentUser?.role === "FACULTY";
-  const fetchAssignments = async () => {
-    const fetchedAssignments = await client.findAssignmentsForCourse(
-      cid as string
-    );
-    dispatch(setAssignments(fetchedAssignments));
-  };
-  
+
   useEffect(() => {
+    const fetchAssignments = async () => {
+      const fetchedAssignments = await client.findAssignmentsForCourse(
+        cid as string
+      );
+      dispatch(setAssignments(fetchedAssignments));
+    };
     if (!currentUser || currentUser.username === "") {
       alert("User not signed in");
       redirect("/Account/Signin");
@@ -134,8 +134,14 @@ export default function Assignments() {
                   <LessonControlButtons aid={assignment._id} />
                   <div className="small mt-1 ps-5">
                     <span className="text-danger">Multiple Modules</span> |{" "}
-                    <b>Not available until</b> {assignment.availableFrom.slice(0,10)} <br />
-                    <b>Due</b> {assignment.dueDate.slice(0, 10)}| {assignment.points} Points
+                    <b>Not available until</b>{" "}
+                    {assignment.availableFrom
+                      ? assignment.availableFrom.slice(0, 10)
+                      : ""}{" "}
+                    <br />
+                    <b>Due</b>{" "}
+                    {assignment.dueDate ? assignment.dueDate.slice(0, 10) : ""}|{" "}
+                    {assignment.points} Points
                   </div>
                 </ListGroupItem>
               ))}

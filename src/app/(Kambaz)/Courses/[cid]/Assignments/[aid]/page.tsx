@@ -230,7 +230,9 @@ export default function AssignmentEditor() {
                   readOnly={!isFaculty}
                   type="date"
                   id="wd-due-date"
-                  defaultValue={assignment.dueDate.slice(0, 10)}
+                  defaultValue={
+                    assignment.dueDate ? assignment.dueDate.slice(0, 10) : ""
+                  }
                   onChange={(e) =>
                     setNewAssignment({
                       ...newAssignment,
@@ -249,7 +251,11 @@ export default function AssignmentEditor() {
                 <FormControl
                   readOnly={!isFaculty}
                   type="date"
-                  defaultValue={assignment.availableFrom.slice(0, 10)}
+                  defaultValue={
+                    assignment.availableFrom
+                      ? assignment.availableFrom.slice(0, 10)
+                      : ""
+                  }
                   id="wd-available-from"
                   onChange={(e) =>
                     setNewAssignment({
@@ -266,7 +272,11 @@ export default function AssignmentEditor() {
                 <FormControl
                   readOnly={!isFaculty}
                   type="date"
-                  defaultValue={assignment.availableUntil.slice(0, 10)}
+                  defaultValue={
+                    assignment.availableUntil
+                      ? assignment.availableUntil.slice(0, 10)
+                      : ""
+                  }
                   id="wd-available-until"
                   onChange={(e) =>
                     setNewAssignment({
