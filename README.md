@@ -168,8 +168,8 @@ Ensure the backend server is running and accessible.
 ---
 
 ## 📌 Status
-
-Actively developed as part of coursework at
+## Finished Product!!
+Actively developed and **deployed** as part of coursework at
 **Northeastern University – Khoury College of Computer Sciences**.
 
 ---
@@ -182,11 +182,3 @@ Northeastern University
 
 ---
 
-If you want, I can:
-
-* Add **screenshots / UI sections**
-* Add **API contract examples**
-* Make a **shorter recruiter-friendly README**
-* Write a **GitHub About section** for this repo too
-
-Just say 👍
