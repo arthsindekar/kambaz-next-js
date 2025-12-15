@@ -10,11 +10,11 @@ import {
   FormSelect,
   Row,
 } from "react-bootstrap";
-import { RootState } from "@/src/app/(Kambaz)/store";
+import { RootState } from "@/app/(Kambaz)/store";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useMemo, useState } from "react";
 import { setAssignments, updateAssignment } from "../assignmentReducer";
-import { assignments } from "@/src/app/(Kambaz)/Database";
+import { assignments } from "@/app/(Kambaz)/Database";
 import { on } from "events";
 
 export default function AssignmentEditor() {
