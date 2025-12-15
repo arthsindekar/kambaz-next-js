@@ -18,8 +18,8 @@ export default function CourseNavigation({ cid }: { cid: string }) {
       id: "wd-course-modules-link",
     },
     {
-      label: "Piazza",
-      path: `/Courses/${cid}/Piazza`,
+      label: "Pazza",
+      path: `/Courses/${cid}/Pazza`,
       id: "wd-course-piazza-link",
     },
     { label: "Zoom", path: `/Courses/${cid}/Zoom`, id: "wd-course-zoom-link" },
