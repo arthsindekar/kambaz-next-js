@@ -1,13 +1,13 @@
 "use client";
 
-import { Users } from "@/src/app/(Kambaz)/Account/client";
+import { Users } from "@/app/(Kambaz)/Account/client";
 import { useParams, usePathname } from "next/navigation";
 import PeopleDetails from "../Details";
 import * as client from "../../../client";
 import { Table } from "react-bootstrap";
 import { FaUserCircle } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import { RootState } from "@/src/app/(Kambaz)/store";
+import { RootState } from "@/app/(Kambaz)/store";
 import { useSelector } from "react-redux";
 
 export default function PeopleTable({
