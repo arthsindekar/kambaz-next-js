@@ -10,6 +10,7 @@ export default function Labs() {
         <li>
           <Link href="https://github.com/arthsindekar/kambaz-next-js">GitHub Source Code Link</Link>
         </li>
+        <li><Link href="https://kambaz-node-server-app-0wxv.onrender.com"> Server URL</Link></li>
         <li>
           <Link href="/">Click Here for Kambaz App</Link>
         </li>

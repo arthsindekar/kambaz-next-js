@@ -1,122 +1,134 @@
+"use client";
+import {
+  Col,
+  FormControl,
+  ListGroup,
+  ListGroupItem,
+  Row,
+} from "react-bootstrap";
+import ModulesControls from "./ModulesControls";
+import { BsGripVertical } from "react-icons/bs";
+import LessonControlButtons from "./LessonControlButtons";
+import ModuleControlButtons from "./ModuleControlButtons";
+import { useParams } from "next/navigation";
+import { useState, useEffect } from "react";
+import {
+  setModules,
+  addModule,
+  editModule,
+  updateModule,
+  deleteModule,
+  Module,
+} from "./reducer";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../../store";
+import * as client from "../../client";
+import { on } from "events";
+
 export default function Modules() {
+  const { cid } = useParams() as { cid: string };
+
+  const [moduleName, setModuleName] = useState("");
+  const { modules } = useSelector((state: RootState) => state.modulesReducer);
+  const currentUser = useSelector(
+    (state: RootState) => state.accountReducer.currentUser
+  );
+  const isFaculty = currentUser?.role === "FACULTY";
+  const dispatch = useDispatch();
+  const fetchModules = async () => {
+    const modules = await client.findModulesForCourse(cid as string);
+    dispatch(setModules(modules));
+  };
+  useEffect(() => {
+    fetchModules();
+  }, []);
+  const onCreateModuleForCourse = async () => {
+    if (!cid) return;
+    const newModule = { name: moduleName, course: cid };
+    const createdModule = await client.createModuleForCourse(
+      cid,
+      newModule as Module
+    );
+    dispatch(setModules([...modules, createdModule]));
+  };
+  const onRemoveModule = async (moduleId: string) => {
+    await client.deleteModule(cid, moduleId);
+    dispatch(setModules(modules.filter((m) => m._id !== moduleId)));
+  };
+  const onUpdateModule = async (module: Module) => {
+    await client.updateModule(cid,module);
+    const newModules = modules.map((m) => (m._id === module._id ? module : m));
+    dispatch(setModules(newModules));
+  };
+
   return (
     <div>
-      <button>Collapse All</button>
-      <button>View Progress</button>
-      <select defaultValue={"Publish All"}>
-        <option value="Publish All">Publish All</option>
-      </select>
-      <button>+ Modules</button>
-      <ul id="wd-modules">
-        <li className="wd-module">
-          <div className="wd-title">Week 1</div>
-          <ul className="wd-lessons">
-            <li className="wd-lesson">
-              <span className="wd-title">LEARNING OBJECTIVES</span>
-              <ul className="wd-content">
-                <li className="wd-content-item">Introduction to the course</li>
-                <li className="wd-content-item">
-                  Learn what is Web Development
-                </li>
-                <li>Learn about HTML and CSS</li>
-              </ul>
-            </li>
-
-            <li>
-              <span className="wd-title">READING</span>
-              <ul className="wd-content">
-                <li className="wd-content-item">FullStack Developer Chapter 1- Introduction</li>
-                <li className="wd-content-item">
-                  FullStack Developer Chapter 2- Creating User
-                </li>
-                <li>Learn about HTML and CSS</li>
-              </ul>
-            </li>
-             <li>
-              <span className="wd-title">SLIDES</span>
-              <ul className="wd-content">
-                <li className="wd-content-item">Intro to Web Dev</li>
-                <li className="wd-content-item">
-                  Creating an http server
-                </li>
-                <li>Creating a react app</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li className="wd-module">
-          <div className="wd-title">Week 2</div>
-          <ul className="wd-lessons">
-            <li className="wd-lesson">
-              <span className="wd-title">LEARNING OBJECTIVES</span>
-              <ul className="wd-content">
-                <li className="wd-content-item">Learning CSS</li>
-                <li className="wd-content-item">
-                  Learn what is JS
-                </li>
-                <li>Learn about HTML and CSS and JS working together</li>
-              </ul>
-            </li>
-
-            <li>
-              <span className="wd-title">READING</span>
-              <ul className="wd-content">
-                <li className="wd-content-item">FullStack Developer Chapter 3- CSS</li>
-                <li className="wd-content-item">
-                  FullStack Developer Chapter 4- Adding styles
-                </li>
-                <li>Learn about JS</li>
-              </ul>
-            </li>
-             <li>
-              <span className="wd-title">SLIDES</span>
-              <ul className="wd-content">
-                <li className="wd-content-item">Intro to CSS</li>
-                <li className="wd-content-item">
-                  Creating an JS function
-                </li>
-                <li>Learning next JS</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li className="wd-module">
-          <div className="wd-title">Week 3</div>
-          <ul className="wd-lessons">
-            <li className="wd-lesson">
-              <span className="wd-title">LEARNING OBJECTIVES</span>
-              <ul className="wd-content">
-                <li className="wd-content-item">Learning NextJS</li>
-                <li className="wd-content-item">
-                  Learn what is NextJS server
-                </li>
-                <li>Learn about server side render</li>
-              </ul>
-            </li>
-
-            <li>
-              <span className="wd-title">READING</span>
-              <ul className="wd-content">
-                <li className="wd-content-item">FullStack Developer Chapter 4- NextJS</li>
-                <li className="wd-content-item">
-                  FullStack Developer Chapter 5- Adding components to nextJS
-                </li>
-                <li>Learn about NextJS</li>
-              </ul>
-            </li>
-             <li>
-              <span className="wd-title">SLIDES</span>
-              <ul className="wd-content">
-                <li className="wd-content-item">Intro to NextJS</li>
-                <li className="wd-content-item">
-                  Creating an NextJS function and exporting it.
-                </li>
-                <li>Learning next NextJS</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
+      <Row className="m-2">
+        <Col xs={12}>
+          <ModulesControls
+            setModuleName={setModuleName}
+            moduleName={moduleName}
+            addModule={onCreateModuleForCourse}
+          />
+        </Col>
+      </Row>
+      <br />
+      <br />
+      <Row className="m-2">
+        <ListGroup className="rounded-0" id="wd-modules">
+          {modules.map((module) => (
+            <ListGroupItem
+              key={module._id}
+              className="wd-module p-0 mb-5 fs-5 border-gray"
+            >
+              <div className="wd-title p-3 ps-2 bg-secondary">
+                <BsGripVertical className="me-2 fs-3" />
+                {!module.editing && module.name}
+                {module.editing && (
+                  <FormControl
+                    className="w-50 d-inline-block"
+                    onChange={(e) =>
+                      dispatch(
+                        updateModule({ ...module, name: e.target.value })
+                      )
+                    }
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        onUpdateModule({ ...module, editing: false });
+                      }
+                    }}
+                    defaultValue={module.name}
+                  />
+                )}
+                {isFaculty && (
+                  <>
+                    <ModuleControlButtons
+                      moduleId={module._id}
+                      deleteModule={(moduleId) => {
+                        onRemoveModule(moduleId);
+                      }}
+                      editModule={(moduleId) => dispatch(editModule(moduleId))}
+                    />
+                  </>
+                )}
+              </div>
+              {module.lessons && (
+                <ListGroup className="wd-lessons rounded-0">
+                  {module.lessons.map((lesson) => (
+                    <ListGroupItem
+                      key={lesson._id}
+                      className="wd-lesson p-3 ps-1"
+                    >
+                      <BsGripVertical className="me-2 fs-3" /> {lesson.name}{" "}
+                      <LessonControlButtons aid="0" />
+                    </ListGroupItem>
+                  ))}
+                </ListGroup>
+              )}
+            </ListGroupItem>
+          ))}
+        </ListGroup>
+      </Row>
     </div>
   );
 }
