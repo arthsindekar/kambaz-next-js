@@ -35,6 +35,10 @@ const eslintConfig = [
             "next-env.d.ts",
         ],
     },
+    (module.exports = {
+        root: true,
+        extends: ["next/core-web-vitals"],
+    }),
 ];
 
 export default eslintConfig;
