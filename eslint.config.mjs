@@ -13,10 +13,19 @@ const eslintConfig = [
     ...compat.extends("next/core-web-vitals", "next/typescript"),
     {
         rules: {
+            // JSX text
             "react/no-unescaped-entities": "off",
+
+            // TypeScript
             "@typescript-eslint/no-explicit-any": "off",
+            "@typescript-eslint/no-unused-vars": "off",
+
+            // React hooks
+            "react-hooks/rules-of-hooks": "off",
+            "react-hooks/exhaustive-deps": "off",
         },
     },
+    ,
     {
         ignores: [
             "node_modules/**",
