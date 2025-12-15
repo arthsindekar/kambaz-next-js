@@ -169,8 +169,7 @@ Ensure the backend server is running and accessible.
 
 ## 📌 Status
 ## Finished Product!!
-Actively developed and **deployed** as part of coursework at
-**Northeastern University – Khoury College of Computer Sciences**.
+This app is **deployed** on vercel.
 
 ---
 
