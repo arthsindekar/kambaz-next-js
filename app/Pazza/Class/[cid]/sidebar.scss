@@ -1,0 +1,122 @@
+@use "../../scss" as *;
+
+.sidebar-wrapper {
+  border-right: 1px solid lightgray;
+  height: 100%;
+
+  .sidebar-buttons {
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    .new-post-button {
+      padding: 0px 10px;
+      background-color: #0c5fab;
+      border-radius: 10px;
+      white-space: nowrap;
+      height: 40px;
+      width: fit-content;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-input {
+      position: relative;
+
+      .search-icon {
+        width: auto;
+        height: auto;
+        font-size: 1.2rem;
+        color: #555;
+        position: absolute;
+        top: 50%;
+        left: 8px;
+        transform: translateY(-50%);
+      }
+      .search-bar {
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        height: 40px;
+        padding-left: 30px;
+      }
+    }
+  }
+
+  .posts-feed {
+    margin: 5px 10px;
+    padding-top: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: calc(100% - 75px);
+    border: 1px solid lightgray;
+    box-shadow: 0px 0px 5px lightgray;
+    border-radius: 10px;
+
+    .posts-list {
+      border: none;
+
+      .posts-list-group {
+        
+
+        .post-link {
+          color: black;
+          text-decoration: none;
+          // border-radius: 10px;
+          margin-bottom: 5px;
+
+          .post-item {
+            font-size: small;
+
+            &:hover {
+              background-color: #f0f0f0;
+              cursor: pointer;
+            }
+            &.unread {
+              border-left: 5px solid varv(primary-color);
+            }
+            .posts-title {
+              font-weight: bold;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp: 1;
+              line-clamp: 1;
+              -webkit-box-orient: vertical;
+            }
+            .posts-description {
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp: 3;
+              line-clamp: 3;
+              -webkit-box-orient: vertical;
+              color: gray;
+            }
+          }
+        }
+        .post-category {
+          padding: 0px 5px;
+          // margin-bottom: 5px;
+          border: none !important;
+
+          .post-today-cursor {
+            width: 100%;
+            padding: 5px 10px;
+            background-color: lightgray;
+            cursor: pointer;
+          }
+        }
+        .post-category-yesterday {
+          padding: 5px;
+          margin-bottom: 5px;
+          border-radius: 10px;
+          border-top-width: 1px;
+          .post-yesterday-cursor {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

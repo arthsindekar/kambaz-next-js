@@ -1,0 +1,38 @@
+.class-wrapper {
+  --sidebar-size: 369px;
+  --folder-filter: 20px;
+
+  width: 100%;
+  height: calc(100vh - 50px);
+  position: relative;
+  display: flex;
+
+  .sidebar-wrapper {
+    width: var(--sidebar-size);
+    height: 100%;
+  }
+  .sidebar-toggle-icon {
+    margin-left: 0px; 
+  }
+
+  .icon-hover:hover {
+    color: #0d6efd;
+    cursor: pointer;
+  }
+  .rightside-wrapper {
+    width: calc(100% - var(--sidebar-size));
+    height: 100%;
+
+    .folder-filter-wrapper {
+      width: calc(100% - var(--sidebar-size));
+      height: var(--folder-filter);
+    }
+    
+    .content-wrapper {
+      height: calc(100% - var(--folder-filter) - 22px);
+      overflow-y: auto;
+      margin-top: 20px;
+      padding-right: 15px;
+    }
+  }
+}

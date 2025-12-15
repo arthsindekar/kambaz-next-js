@@ -1,0 +1,50 @@
+@use "scss" as *;
+
+.navbar.main-nav {
+    background-color: vars(primary-color) !important;
+    color: vars(primary-font-color);
+    font-weight: 900;
+    padding: 0;
+    height: var(--main-navbar-height);
+
+    a.nav-link {
+        color: vars(primary-font-color);
+        position: relative;
+
+        &::after {
+            content: "";
+            width: 0%;
+            height: 3px;
+            background: white;
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width ease-in-out 0.2s;
+        }
+
+        &:hover {
+            color: vars(primary-font-color) !important;
+
+            &::after {
+                width: 80%;
+            }
+        }
+        &:active,
+        &:focus-within,
+        &.active {
+            color: vars(primary-font-color) !important;
+
+            &::after {
+                width: 80%;
+            }
+        }
+    }
+    .nav-user-pill {
+        background-color: vars(primary-color);
+        padding: 5px 10px;
+        border-radius: 20px;
+        filter: brightness(90%);
+        cursor: pointer;
+    }
+}
