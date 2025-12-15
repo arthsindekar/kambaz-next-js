@@ -1,36 +1,192 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+# Kambaz Frontend (Next.js)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Frontend application for **Kambaz**, a Canvas-inspired learning management system with an integrated **Pazza-style discussion platform**. It allows instructors and students at university to enroll and unenroll from courses. It lets instructors add,edit,read and delete assignments,modules in a course. 
+This frontend also consists of a platform called **Pazza** that lets students post their doubts and allows instructors to answer those questions and solve doubts. 
+Built using **Next.js 15 and React 19**, this repository consumes the Kambaz Node backend and provides a modern, role-aware UI for courses, assignments, and collaborative discussions.
+
+---
+
+## 🚀 Tech Stack
+
+* **Framework:** Next.js 15 (App Router)
+* **UI Library:** React 19
+* **Language:** TypeScript
+* **State Management:** Redux Toolkit
+* **Styling:** Bootstrap + custom CSS
+* **Icons:** React Icons
+* **Deployment:** Vercel
+* **Backend:** Kambaz Node Server (Express + MongoDB)
+
+---
+
+## 🧠 Core Concepts
+
+* **Server-Side Rendering (SSR) & Client Components**
+* **Session-based authentication** with cookies
+* **Role-aware UI** (Student / Instructor)
+* **Course-scoped routing**
+* **Integrated discussion system (Pazza)**
+* **Redux-driven global state**
+* **Production-ready builds**
+
+---
+
+## 📂 Project Structure
+
+```
+kambaz-next-js/
+│
+├── app/
+│   ├── (Kambaz)/            # Core LMS routes
+│   │   ├── Account/
+│   │   ├── Courses/
+│   │   ├── Modules/
+│   │   └── Assignments/
+│   │
+│   ├── Pazza/               # Integrated discussion system
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔐 Authentication & Sessions
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* Uses **server-managed sessions** from the backend
+* Cookies shared across domains (`Vercel ↔ Render`)
+* Automatic login persistence
+* Role-based rendering and route protection
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📘 Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 👤 Account
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* Login / Logout / Register
+* Profile management
+* Session persistence across refreshes
 
-## Deploy on Vercel
+### 📚 Courses
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* Course dashboard
+* Instructor-only course management
+* Student enrollments
+* Module and assignment navigation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 📝 Assignments
+
+* Assignment creation and updates
+* Due dates and metadata
+* Course-scoped visibility
+
+### 💬 Pazza (Integrated)
+
+* Question / Note / Poll posts
+* Nested follow-ups
+* Nested replies
+* Resolve / unresolve follow-ups
+* Folder-based organization
+* Instructor vs student controls
+* Real-time UI updates via state management
+
+---
+
+## 🌐 Routing Model
+
+* Built using **Next.js App Router**
+* Dynamic routes:
+
+  ```
+  /Courses/[cid]
+  /Assignments/[aid]
+  /Pazza/Class/[cid]
+  ```
+* Client components used where interactivity is required
+* Server components leveraged for initial data fetches
+
+---
+
+## ⚙️ Environment Variables
+
+Create a `.env.local` file:
+
+```env
+NEXT_PUBLIC_HTTP_SERVER=http://localhost:4000
+```
+
+For production (Vercel):
+
+```env
+NEXT_PUBLIC_HTTP_SERVER=https://your-render-backend.onrender.com
+```
+
+---
+
+## 🏃 Running Locally
+
+```bash
+npm install
+npm run dev
+```
+
+Runs on:
+
+```
+http://localhost:3000
+```
+
+Ensure the backend server is running and accessible.
+
+---
+
+## 🚢 Deployment
+
+* Deployed on **Vercel**
+* Automatic builds on push to `main`
+* Configured for cross-origin session cookies
+* Production-ready SSR output
+
+---
+
+## 🔗 Backend Repository
+
+* **Kambaz Node Server App**
+  Handles authentication, data persistence, and business logic.
+
+---
+
+## 🛠️ Design Philosophy
+
+* Frontend focuses on **UI + state**
+* Backend owns **auth and data integrity**
+* Pazza deeply integrated, not a bolt-on feature
+* Clean separation between presentation and API clients
+* Built to mirror real-world LMS systems
+
+---
+
+## 📌 Status
+
+Actively developed as part of coursework at
+**Northeastern University – Khoury College of Computer Sciences**.
+
+---
+
+## 👨‍💻 Author
+
+**Arth Sindekar**
+M.S. in Computer Science
+Northeastern University
+
+---
+
+If you want, I can:
+
+* Add **screenshots / UI sections**
+* Add **API contract examples**
+* Make a **shorter recruiter-friendly README**
+* Write a **GitHub About section** for this repo too
+
+Just say 👍
