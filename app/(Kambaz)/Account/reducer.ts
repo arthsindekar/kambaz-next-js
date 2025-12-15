@@ -1,28 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
+export type User = {
+    _id: string;
+    username: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    role: string;
+    dob: string;
+    loginId: string;
+    section: string;
+    lastActivity: string;
+    totalActivity: string;
+};
 const initialState = {
-  currentUser: {
-    _id: "",
-    username: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    role: "",
-    dob: "",
-    loginId: "002143650S",
-    section: "S101",
-    lastActivity: "1852-11-27",
-    totalActivity: "21:32:43",
-  },
+    currentUser: {} as User,
 };
 const accountSlice = createSlice({
-  name: "account",
-  initialState,
-  reducers: {
-    setCurrentUser: (state, action) => {
-      state.currentUser = action.payload;
+    name: "account",
+    initialState,
+    reducers: {
+        setCurrentUser: (state, action) => {
+            state.currentUser = action.payload;
+        },
     },
-  },
 });
 export const { setCurrentUser } = accountSlice.actions;
 export default accountSlice.reducer;
